@@ -5,6 +5,7 @@ import { prisma } from "@/lib/db";
 import { notFound } from "next/navigation";
 
 type Props = { params: Promise<{ slug: string }> };
+export const revalidate = 60;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
@@ -28,34 +29,45 @@ export default async function ProjectPage({ params }: Props) {
             <Link href="/" className="hover:text-white">الرئيسية</Link>
             <span>&rsaquo;</span>
             <Link href="/projects" className="hover:text-white">مشروعاتنا</Link>
-            <span>&rsaquo;</span>
-            <span>{project.title}</span>
           </div>
         </div>
       </section>
 
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          {project.partnerLogo && (
-            <div className="flex items-center justify-center gap-8 mb-10">
-              <Image src={project.partnerLogo} alt="Partner" width={250} height={100} className="h-20 w-auto object-contain" />
-              <Image src="https://stimulusgroups.org/wp-content/uploads/2023/07/stimulislogo.png" alt="SGO" width={250} height={100} className="h-20 w-auto object-contain" />
+          {/* Partner logos boxes */}
+          {project.partnerLogos && project.partnerLogos.length > 0 && (
+            <div className="flex items-center justify-center gap-6 mb-12 flex-wrap">
+              {project.partnerLogos.map((logo, i) => (
+                <div key={i} className="bg-warm-gray border-2 border-border rounded-2xl p-6 min-w-[200px] flex items-center justify-center">
+                  <Image src={logo} alt={`شريك ${i + 1}`} width={200} height={80} className="max-h-20 w-auto object-contain" />
+                </div>
+              ))}
             </div>
           )}
 
+          {/* Project title + description */}
           <h2 className="text-2xl font-extrabold text-navy mb-6">{project.title}</h2>
-          <div className="prose-arabic" dangerouslySetInnerHTML={{ __html: project.description.replace(/\n/g, "<br/>") }} />
 
-          <div className="mt-12 text-center">
+          {/* Rich content */}
+          {project.content ? (
+            <div className="prose-arabic" dangerouslySetInnerHTML={{ __html: project.content }} />
+          ) : (
+            <p className="text-text-light leading-[2]">{project.description}</p>
+          )}
+
+          <div className="mt-12 flex gap-4">
             <Link href="/contact" className="inline-block bg-coral text-white font-bold px-8 py-3.5 rounded-xl hover:bg-coral-hover transition-colors">تواصل معنا</Link>
+            <Link href="/projects" className="inline-block bg-navy text-white font-bold px-8 py-3.5 rounded-xl hover:bg-navy-light transition-colors">جميع المشروعات</Link>
           </div>
 
+          {/* Other projects */}
           {otherProjects.length > 0 && (
             <div className="mt-16 pt-10 border-t border-border">
               <h3 className="text-xl font-bold text-navy mb-6">مشروعات أخرى</h3>
-              <div className="space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {otherProjects.map((p) => (
-                  <Link key={p.id} href={`/projects/${p.slug}`} className="block bg-warm-gray rounded-xl p-5 hover:shadow-md transition-all group">
+                  <Link key={p.id} href={`/projects/${p.slug}`} className="bg-warm-gray rounded-xl p-5 hover:shadow-md transition-all group">
                     <p className="text-coral text-xs font-bold mb-1">مشروع</p>
                     <p className="font-bold text-navy group-hover:text-coral transition-colors">{p.title}</p>
                   </Link>
