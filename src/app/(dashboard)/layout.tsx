@@ -1,9 +1,11 @@
 import Link from "next/link";
+import { LogoutButton } from "@/components/dashboard/LogoutButton";
 
 const SIDEBAR = [
   { label: "لوحة التحكم", href: "/admin", icon: "⬡" },
   { label: "المقالات", href: "/admin/articles", icon: "✎" },
   { label: "الكُتّاب", href: "/admin/authors", icon: "👤" },
+  { label: "المشروعات", href: "/admin/projects", icon: "📋" },
   { label: "الفئات", href: "/admin/categories", icon: "📂" },
   { label: "التعليقات", href: "/admin/comments", icon: "💬" },
   { label: "رسائل التواصل", href: "/admin/contacts", icon: "✉" },
@@ -28,10 +30,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             </Link>
           ))}
         </nav>
-        <div className="p-4 border-t border-white/10">
+        <div className="p-4 border-t border-white/10 space-y-1">
           <Link href="/" className="flex items-center gap-2 px-4 py-3 text-white/50 hover:text-white text-sm rounded-lg hover:bg-white/10 transition-colors">
             ← العودة للموقع
           </Link>
+          <LogoutButton />
         </div>
       </aside>
 

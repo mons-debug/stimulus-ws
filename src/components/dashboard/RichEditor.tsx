@@ -8,6 +8,7 @@ import TextAlign from "@tiptap/extension-text-align";
 import Underline from "@tiptap/extension-underline";
 import Placeholder from "@tiptap/extension-placeholder";
 import TiptapImage from "@tiptap/extension-image";
+import Youtube from "@tiptap/extension-youtube";
 
 function Btn({ active, onClick, children, title }: { active?: boolean; onClick: () => void; children: React.ReactNode; title: string }) {
   return (
@@ -33,7 +34,8 @@ export function RichEditor({ content, onChange }: { content: string; onChange: (
       TextAlign.configure({ types: ["heading", "paragraph"] }),
       Underline,
       Placeholder.configure({ placeholder: "ابدأ الكتابة هنا..." }),
-      TiptapImage.configure({ inline: false, allowBase64: false }),
+      TiptapImage.configure({ inline: false, allowBase64: false, HTMLAttributes: { class: "max-w-full rounded-xl" } }),
+      Youtube.configure({ width: 640, height: 360, HTMLAttributes: { class: "w-full rounded-xl aspect-video" } }),
     ],
     content,
     onUpdate: ({ editor }) => onChange(editor.getHTML()),
@@ -64,6 +66,22 @@ export function RichEditor({ content, onChange }: { content: string; onChange: (
   function addImageUrl() {
     const url = prompt("أدخل رابط الصورة:");
     if (url) editor?.chain().focus().setImage({ src: url }).run();
+  }
+
+  function addVideo() {
+    const url = prompt("أدخل رابط الفيديو (YouTube):");
+    if (url) editor?.commands.setYoutubeVideo({ src: url });
+  }
+
+  function resizeImage(size: string) {
+    const html = `<img src="" style="max-width:${size};display:block;margin:0 auto" />`;
+    const selected = editor?.state.selection;
+    if (selected) {
+      const node = editor?.state.doc.nodeAt(selected.from);
+      if (node?.type.name === "image") {
+        editor?.chain().focus().updateAttributes("image", { style: `max-width:${size};display:block;margin:0 auto` }).run();
+      }
+    }
   }
 
   function insertHtml() {
@@ -98,6 +116,12 @@ export function RichEditor({ content, onChange }: { content: string; onChange: (
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
         </Btn>
         <Btn onClick={addImageUrl} title="صورة من رابط">🌐</Btn>
+        <Sep />
+        <Btn onClick={addVideo} title="فيديو يوتيوب">▶</Btn>
+        <Sep />
+        <Btn onClick={() => resizeImage("50%")} title="حجم صغير">S</Btn>
+        <Btn onClick={() => resizeImage("75%")} title="حجم متوسط">M</Btn>
+        <Btn onClick={() => resizeImage("100%")} title="حجم كامل">L</Btn>
         <Sep />
         <Btn onClick={insertHtml} title="إدراج HTML">&lt;/&gt;</Btn>
         <Sep />

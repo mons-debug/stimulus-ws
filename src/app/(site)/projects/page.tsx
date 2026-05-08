@@ -1,16 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
+import { prisma } from "@/lib/db";
 
 export const metadata: Metadata = { title: "مشروعاتنا" };
+export const revalidate = 60;
 
-const PROJECTS = [
-  { title: "تعزيز الحوار الديمقراطي في مصر", hasNed: true },
-  { title: "مجموعات التحفيز السياسي المصرية", hasNed: false },
-  { title: "دور الدين في الحياة العامة والمشاركة الديمقراطية", hasNed: false },
-];
+export default async function ProjectsPage() {
+  const projects = await prisma.project.findMany({ orderBy: { sortOrder: "asc" } });
 
-export default function ProjectsPage() {
   return (
     <>
       <section className="bg-gradient-to-bl from-navy to-navy-light py-20">
@@ -18,7 +16,7 @@ export default function ProjectsPage() {
           <h1 className="text-4xl font-extrabold text-white mb-4">مشروعاتنا</h1>
           <div className="flex items-center justify-center gap-2 text-white/60 text-sm">
             <Link href="/" className="hover:text-white">الرئيسية</Link>
-            <span>›</span><span>مشروعاتنا</span>
+            <span>&rsaquo;</span><span>مشروعاتنا</span>
           </div>
         </div>
       </section>
@@ -31,18 +29,19 @@ export default function ProjectsPage() {
           </p>
 
           <div className="space-y-8">
-            {PROJECTS.map((project) => (
-              <div key={project.title} className="bg-warm-gray rounded-2xl border-2 border-navy/10 p-8 hover:border-coral/30 hover:shadow-lg transition-all">
-                {project.hasNed && (
+            {projects.map((project) => (
+              <Link key={project.id} href={`/projects/${project.slug}`} className="block bg-warm-gray rounded-2xl border-2 border-navy/10 p-8 hover:border-coral/30 hover:shadow-lg transition-all group">
+                {project.partnerLogo && (
                   <div className="flex items-center justify-center gap-8 mb-6">
-                    <Image src="https://stimulusgroups.org/wp-content/uploads/2023/08/ned.jpg" alt="NED" width={200} height={80} className="h-16 w-auto object-contain" />
+                    <Image src={project.partnerLogo} alt="Partner" width={200} height={80} className="h-16 w-auto object-contain" />
                     <Image src="https://stimulusgroups.org/wp-content/uploads/2023/07/stimulislogo.png" alt="SGO" width={200} height={80} className="h-16 w-auto object-contain" />
                   </div>
                 )}
                 <p className="text-coral text-xs font-bold mb-1">مشروع</p>
-                <h3 className="text-xl font-extrabold text-navy mb-4">{project.title}</h3>
-                <Link href="#" className="text-coral font-semibold text-sm hover:underline">إقرأ المزيد ←</Link>
-              </div>
+                <h3 className="text-xl font-extrabold text-navy mb-3 group-hover:text-coral transition-colors">{project.title}</h3>
+                <p className="text-text-light text-sm leading-relaxed mb-4 line-clamp-3">{project.description}</p>
+                <span className="text-coral font-semibold text-sm">إقرأ المزيد &larr;</span>
+              </Link>
             ))}
           </div>
         </div>

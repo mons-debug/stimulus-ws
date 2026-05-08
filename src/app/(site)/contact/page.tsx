@@ -12,10 +12,22 @@ const INFO = [
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
 
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    setSubmitted(true);
+    setSending(true);
+    const form = e.target as HTMLFormElement;
+    const data = {
+      fullName: (form.elements.namedItem("fullName") as HTMLInputElement).value,
+      subject: (form.elements.namedItem("subject") as HTMLInputElement).value,
+      email: (form.elements.namedItem("email") as HTMLInputElement).value,
+      phone: (form.elements.namedItem("phone") as HTMLInputElement).value,
+      message: (form.elements.namedItem("message") as HTMLTextAreaElement).value,
+    };
+    const res = await fetch("/api/contacts", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) });
+    if (res.ok) setSubmitted(true);
+    setSending(false);
   }
 
   return (
@@ -72,29 +84,31 @@ export default function ContactPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-semibold text-navy mb-1">الإسم الكامل</label>
-                    <input type="text" required className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:border-coral text-sm bg-white" />
+                    <input type="text" name="fullName" required className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:border-coral text-sm bg-white" />
                   </div>
                   <div>
                     <label className="block text-sm font-semibold text-navy mb-1">الموضوع</label>
-                    <input type="text" className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:border-coral text-sm bg-white" />
+                    <input type="text" name="subject" className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:border-coral text-sm bg-white" />
                   </div>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-semibold text-navy mb-1">البريد الإلكتروني</label>
-                    <input type="email" required className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:border-coral text-sm bg-white" />
+                    <input type="email" name="email" required className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:border-coral text-sm bg-white" />
                   </div>
                   <div>
                     <label className="block text-sm font-semibold text-navy mb-1">رقم الهاتف</label>
-                    <input type="tel" className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:border-coral text-sm bg-white" />
+                    <input type="tel" name="phone" className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:border-coral text-sm bg-white" />
                   </div>
                 </div>
                 <div>
                   <label className="block text-sm font-semibold text-navy mb-1">الرسالة</label>
-                  <textarea rows={5} required className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:border-coral text-sm bg-white resize-none" />
+                  <textarea name="message" rows={5} required className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:border-coral text-sm bg-white resize-none" />
                 </div>
                 <div className="text-center pt-4">
-                  <button type="submit" className="bg-coral text-white font-bold px-10 py-3 rounded-lg hover:bg-coral-hover transition-colors">إرسال رسالتك</button>
+                  <button type="submit" disabled={sending} className="bg-coral text-white font-bold px-10 py-3 rounded-lg hover:bg-coral-hover transition-colors disabled:opacity-50">
+                    {sending ? "جاري الإرسال..." : "إرسال رسالتك"}
+                  </button>
                 </div>
               </form>
             )}
