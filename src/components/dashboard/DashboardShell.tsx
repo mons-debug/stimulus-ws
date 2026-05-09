@@ -86,7 +86,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
       </>
 
       {/* Main content */}
-      <div className="lg:mr-64 bg-[#F4F4F4] min-h-screen pt-14 lg:pt-0 p-4 lg:p-8 pb-24">
+      <div className="lg:mr-64 bg-[#F4F4F4] min-h-screen pt-18 lg:pt-0 p-4 lg:p-8 pb-24">
         {children}
       </div>
     </div>
