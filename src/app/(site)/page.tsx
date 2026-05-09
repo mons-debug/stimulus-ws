@@ -115,49 +115,42 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ===== مشروعاتنا — Apple-style glass cards ===== */}
+      {/* ===== مشروعاتنا ===== */}
       {projects.length > 0 && (
-      <section className="relative py-14 lg:py-24 bg-gradient-to-b from-[#0a1628] to-navy overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(rgb(255_255_255_/_0.05)_1px,transparent_1px)] [background-size:24px_24px]" />
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-coral/[0.07] rounded-full blur-[200px]" />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-14 lg:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10 lg:mb-16">
             <p className="text-coral text-xs lg:text-sm font-semibold tracking-wider mb-3">مشروعاتنا</p>
-            <h2 className="text-2xl lg:text-5xl font-extrabold text-white leading-snug mb-4">نصنع التغيير من خلال مشاريعنا</h2>
-            <p className="text-white/40 text-sm lg:text-base max-w-xl mx-auto">نعمل على مشاريع مؤثرة تهدف إلى تحقيق التغيير الإيجابي في مصر وأفريقيا والشرق الأوسط</p>
+            <h2 className="text-2xl lg:text-5xl font-extrabold text-navy leading-snug mb-4">نصنع التغيير من خلال مشاريعنا</h2>
+            <p className="text-text-light text-sm lg:text-base max-w-xl mx-auto">نعمل على مشاريع مؤثرة تهدف إلى تحقيق التغيير الإيجابي في مصر وأفريقيا والشرق الأوسط</p>
           </div>
 
-          {/* 3 Glass cards side by side */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-5 mb-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 mb-10">
             {projects.map((project, i) => {
-              const colors = ["from-coral/20 to-coral/5", "from-[#3B82F6]/20 to-[#3B82F6]/5", "from-[#25D366]/20 to-[#25D366]/5"];
-              const accents = ["bg-coral", "bg-[#3B82F6]", "bg-[#25D366]"];
-              const icons = [
-                <svg key="0" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 12l2 3 6-6"/></svg>,
-                <svg key="1" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>,
-                <svg key="2" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>,
-              ];
+              const accents = ["border-coral/20 hover:border-coral/40", "border-[#3B82F6]/20 hover:border-[#3B82F6]/40", "border-[#25D366]/20 hover:border-[#25D366]/40"];
+              const dots = ["bg-coral", "bg-[#3B82F6]", "bg-[#25D366]"];
               return (
                 <Link key={project.id} href={`/projects/${project.slug}`}
-                  className="group relative rounded-2xl lg:rounded-3xl overflow-hidden backdrop-blur-sm bg-white/[0.04] border border-white/[0.08] hover:border-white/20 hover:bg-white/[0.08] transition-all duration-500 hover:-translate-y-1">
-                  {/* Top gradient strip */}
-                  <div className={`h-40 lg:h-48 bg-gradient-to-b ${colors[i]} relative`}>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className={`w-16 h-16 lg:w-20 lg:h-20 rounded-2xl ${accents[i]}/10 flex items-center justify-center text-white/70 group-hover:scale-110 transition-transform duration-500`}>
-                        {icons[i]}
+                  className={`group relative rounded-2xl overflow-hidden bg-warm-gray border-2 ${accents[i]} hover:shadow-xl transition-all duration-300 hover:-translate-y-1`}>
+                  <div className="relative h-44 lg:h-52 bg-gradient-to-br from-navy/[0.03] to-transparent">
+                    {project.partnerLogos[0] ? (
+                      <Image src={project.partnerLogos[0]} alt="" fill className="object-contain p-8 lg:p-10 opacity-60 group-hover:opacity-90 transition-opacity duration-300" />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <Image src="https://stimulusgroups.org/wp-content/uploads/2023/07/stimulislogo.png" alt="" width={120} height={50} className="opacity-20 group-hover:opacity-40 transition-opacity" />
                       </div>
-                    </div>
-                    <div className="absolute top-4 right-4">
-                      <span className="bg-white/10 backdrop-blur-md text-white/80 text-[9px] lg:text-[10px] font-bold px-2.5 py-1 rounded-full border border-white/10">{String(i + 1).padStart(2, "0")}</span>
+                    )}
+                    <div className="absolute top-4 right-4 flex items-center gap-2">
+                      <span className={`w-2 h-2 rounded-full ${dots[i]}`} />
+                      <span className="text-navy/40 text-[10px] font-bold">مشروع {String(i + 1).padStart(2, "0")}</span>
                     </div>
                   </div>
-                  {/* Content */}
-                  <div className="p-5 lg:p-7">
-                    <h3 className="text-base lg:text-lg font-extrabold text-white mb-2 group-hover:text-coral transition-colors leading-snug">{project.title}</h3>
-                    <p className="text-white/40 text-xs lg:text-sm leading-relaxed line-clamp-2 mb-5">{project.description}</p>
-                    <div className="flex items-center justify-between">
-                      <span className="text-coral text-xs font-bold group-hover:underline">تفاصيل المشروع</span>
-                      <svg className="w-4 h-4 text-white/20 group-hover:text-coral group-hover:-translate-x-1 transition-all" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M19 12H5"/><path d="M12 5l-7 7 7 7"/></svg>
+                  <div className="p-5 lg:p-6 bg-white">
+                    <h3 className="text-base lg:text-lg font-extrabold text-navy mb-2 group-hover:text-coral transition-colors leading-snug">{project.title}</h3>
+                    <p className="text-text-light text-xs lg:text-sm leading-relaxed line-clamp-2 mb-4">{project.description}</p>
+                    <div className="flex items-center gap-1.5 text-coral text-xs font-bold">
+                      <span>تفاصيل المشروع</span>
+                      <svg className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M19 12H5"/><path d="M12 5l-7 7 7 7"/></svg>
                     </div>
                   </div>
                 </Link>
@@ -166,7 +159,7 @@ export default async function HomePage() {
           </div>
 
           <div className="text-center">
-            <Link href="/projects" className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white font-semibold px-6 py-3 rounded-full hover:bg-white/20 transition-all text-sm border border-white/10 hover:border-white/20">
+            <Link href="/projects" className="inline-flex items-center gap-2 text-navy font-bold hover:text-coral transition-colors text-sm">
               عرض جميع المشاريع
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M19 12H5"/><path d="M12 5l-7 7 7 7"/></svg>
             </Link>
