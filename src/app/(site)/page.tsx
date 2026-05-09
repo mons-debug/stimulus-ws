@@ -132,12 +132,16 @@ export default async function HomePage() {
               return (
                 <Link key={project.id} href={`/projects/${project.slug}`}
                   className={`group relative rounded-2xl overflow-hidden bg-warm-gray border-2 ${accents[i]} hover:shadow-xl transition-all duration-300 hover:-translate-y-1`}>
-                  <div className="relative h-44 lg:h-52 bg-gradient-to-br from-navy/[0.03] to-transparent">
-                    {project.partnerLogos[0] ? (
-                      <Image src={project.partnerLogos[0]} alt="" fill className="object-contain p-8 lg:p-10 opacity-60 group-hover:opacity-90 transition-opacity duration-300" />
+                  <div className="relative h-44 lg:h-52 overflow-hidden">
+                    {project.featuredImage ? (
+                      <Image src={project.featuredImage} alt={project.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                    ) : project.partnerLogos[0] ? (
+                      <div className="absolute inset-0 bg-warm-gray flex items-center justify-center">
+                        <Image src={project.partnerLogos[0]} alt="" width={140} height={60} className="opacity-60 group-hover:opacity-90 transition-opacity" />
+                      </div>
                     ) : (
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <Image src="https://stimulusgroups.org/wp-content/uploads/2023/07/stimulislogo.png" alt="" width={120} height={50} className="opacity-20 group-hover:opacity-40 transition-opacity" />
+                      <div className="absolute inset-0 bg-warm-gray flex items-center justify-center">
+                        <Image src="https://stimulusgroups.org/wp-content/uploads/2023/07/stimulislogo.png" alt="" width={120} height={50} className="opacity-20" />
                       </div>
                     )}
                     <div className="absolute top-4 right-4 flex items-center gap-2">
