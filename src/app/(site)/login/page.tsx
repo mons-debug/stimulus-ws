@@ -43,7 +43,7 @@ function LoginForm() {
         <div>
           <label className="block text-sm font-bold text-navy mb-1">البريد الإلكتروني</label>
           <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required
-            className="w-full px-4 py-3 border border-border rounded-xl focus:outline-none focus:border-coral text-sm" placeholder="admin@stimulusgroups.org" />
+            className="w-full px-4 py-3 border border-border rounded-xl focus:outline-none focus:border-coral text-sm" placeholder="البريد الإلكتروني" />
         </div>
         <div>
           <label className="block text-sm font-bold text-navy mb-1">كلمة المرور</label>

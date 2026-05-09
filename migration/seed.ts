@@ -124,7 +124,7 @@ async function main() {
   // 6. Create projects
   console.log("Creating projects...");
   const projects = [
-    { title: "تعزيز الحوار الديمقراطي في مصر", slug: "democratic-dialogue-egypt", description: "مشروع تعزيز الحوار الوطني الديمقراطي في مصر بالتعاون مع NED", partnerLogo: "https://stimulusgroups.org/wp-content/uploads/2023/08/ned.jpg", sortOrder: 1 },
+    { title: "تعزيز الحوار الديمقراطي في مصر", slug: "democratic-dialogue-egypt", description: "مشروع تعزيز الحوار الوطني الديمقراطي في مصر بالتعاون مع NED", partnerLogos: ["https://stimulusgroups.org/wp-content/uploads/2023/08/ned.jpg"], sortOrder: 1 },
     { title: "مجموعات التحفيز السياسي المصرية", slug: "egyptian-political-stimulus", description: "مشروع مجموعات التحفيز السياسي المصرية", sortOrder: 2 },
     { title: "دور الدين في الحياة العامة والمشاركة الديمقراطية", slug: "religion-public-life", description: "مشروع دور الدين في الحياة العامة والمشاركة الديمقراطية", sortOrder: 3 },
   ];
