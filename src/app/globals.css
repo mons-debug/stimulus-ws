@@ -128,11 +128,18 @@ body {
 
 .parallax-bg {
   position: absolute;
-  inset: 0;
+  inset: -30% 0;
   background-size: cover;
   background-position: center;
+  background-attachment: fixed;
   z-index: 0;
-  transform: translateZ(0);
+}
+
+@media (max-width: 1024px) {
+  .parallax-bg {
+    background-attachment: scroll;
+    inset: -20% 0;
+  }
 }
 
 .parallax-overlay {
