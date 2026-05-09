@@ -92,7 +92,7 @@ export function RichEditor({ content, onChange }: { content: string; onChange: (
   return (
     <div className="border border-border rounded-2xl overflow-hidden bg-white">
       <input type="file" ref={imgRef} onChange={handleImageUpload} accept="image/*" className="hidden" />
-      <div className="flex flex-wrap items-center gap-0.5 lg:gap-1 p-2 lg:p-3 bg-[#F8F8F8] border-b border-border sticky top-14 lg:top-0 z-10"
+      <div className="flex flex-wrap items-center gap-0.5 lg:gap-1 p-2 lg:p-3 bg-[#F8F8F8] border-b border-border sticky top-14 lg:top-0 z-10">
         <Btn active={editor.isActive("heading", { level: 2 })} onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()} title="عنوان رئيسي">H2</Btn>
         <Btn active={editor.isActive("heading", { level: 3 })} onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()} title="عنوان فرعي">H3</Btn>
         <Sep />

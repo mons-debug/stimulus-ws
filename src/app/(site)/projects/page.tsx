@@ -31,9 +31,9 @@ export default async function ProjectsPage() {
           <div className="space-y-8">
             {projects.map((project) => (
               <Link key={project.id} href={`/projects/${project.slug}`} className="block bg-warm-gray rounded-2xl border-2 border-navy/10 p-8 hover:border-coral/30 hover:shadow-lg transition-all group">
-                {project.partnerLogo && (
+                {project.partnerLogos.length > 0 && (
                   <div className="flex items-center justify-center gap-8 mb-6">
-                    <Image src={project.partnerLogo} alt="Partner" width={200} height={80} className="h-16 w-auto object-contain" />
+                    <Image src={project.partnerLogos[0]} alt="Partner" width={200} height={80} className="h-16 w-auto object-contain" />
                     <Image src="https://stimulusgroups.org/wp-content/uploads/2023/07/stimulislogo.png" alt="SGO" width={200} height={80} className="h-16 w-auto object-contain" />
                   </div>
                 )}

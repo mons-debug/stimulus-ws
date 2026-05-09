@@ -18,6 +18,9 @@ type Article = {
   content: string;
   excerpt: string;
   featuredImage: string;
+  attachmentUrl?: string;
+  attachmentName?: string;
+  galleryImages?: string[];
   categoryId: string;
   authorId?: string;
   published: boolean;
