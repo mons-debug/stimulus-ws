@@ -64,9 +64,9 @@ export default function HomePage() {
                 {LATEST_ARTICLES.map((article) => (
                   <Link key={article.title} href="/blog" className="group relative rounded-xl overflow-hidden flex-1 max-w-[140px] border border-white/10 shadow-xl shadow-black/30">
                     <div className="aspect-[2/3]">
-                      <Image src={article.image} alt={article.title} fill sizes="140px" className="object-cover object-[70%_top] group-hover:scale-105 transition-transform duration-500" />
+                      <Image src={article.image} alt={article.title} fill sizes="140px" className="object-cover object-[70%_top] group-hover:scale-105 transition-transform duration-500 brightness-110" />
                     </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/10" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                     <div className="absolute top-2 right-2">
                       <span className="inline-block bg-coral text-white text-[7px] font-bold px-1.5 py-0.5 rounded-full">{article.category}</span>
                     </div>
@@ -81,9 +81,9 @@ export default function HomePage() {
               <div className="hidden lg:block">
                 <Link href="/blog" className="group block relative rounded-2xl overflow-hidden mb-3 shadow-xl shadow-black/20">
                   <div className="aspect-[16/9]">
-                    <Image src={LATEST_ARTICLES[0].image} alt={LATEST_ARTICLES[0].title} fill sizes="50vw" className="object-cover group-hover:scale-105 transition-transform duration-700" />
+                    <Image src={LATEST_ARTICLES[0].image} alt={LATEST_ARTICLES[0].title} fill sizes="50vw" className="object-cover group-hover:scale-105 transition-transform duration-700 brightness-110" />
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                   <div className="absolute bottom-0 right-0 left-0 p-6">
                     <span className="inline-block bg-coral text-white text-[10px] font-bold px-3 py-1 rounded-full mb-2">{LATEST_ARTICLES[0].category}</span>
                     <h3 className="text-white font-bold text-lg leading-snug mb-1 group-hover:text-coral transition-colors">{LATEST_ARTICLES[0].title}</h3>
@@ -94,9 +94,9 @@ export default function HomePage() {
                   {LATEST_ARTICLES.slice(1).map((article) => (
                     <Link key={article.title} href="/blog" className="group relative rounded-xl overflow-hidden shadow-lg shadow-black/10">
                       <div className="aspect-[4/3]">
-                        <Image src={article.image} alt={article.title} fill sizes="25vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                        <Image src={article.image} alt={article.title} fill sizes="25vw" className="object-cover group-hover:scale-105 transition-transform duration-500 brightness-110" />
                       </div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                       <div className="absolute bottom-0 right-0 left-0 p-4">
                         <span className="inline-block bg-coral/90 text-white text-[9px] font-bold px-2 py-0.5 rounded-full mb-1.5">{article.category}</span>
                         <h3 className="text-white font-bold text-xs leading-snug group-hover:text-coral transition-colors line-clamp-2">{article.title}</h3>
