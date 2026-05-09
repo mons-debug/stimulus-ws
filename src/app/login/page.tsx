@@ -43,12 +43,12 @@ function LoginForm() {
         <div>
           <label className="block text-sm font-bold text-navy mb-1">البريد الإلكتروني</label>
           <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required
-            className="w-full px-4 py-3 border border-border rounded-xl focus:outline-none focus:border-coral text-sm" placeholder="البريد الإلكتروني" />
+            className="w-full px-4 py-3 border border-border rounded-xl focus:outline-none focus:border-coral text-base" placeholder="البريد الإلكتروني" />
         </div>
         <div>
           <label className="block text-sm font-bold text-navy mb-1">كلمة المرور</label>
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required
-            className="w-full px-4 py-3 border border-border rounded-xl focus:outline-none focus:border-coral text-sm" />
+            className="w-full px-4 py-3 border border-border rounded-xl focus:outline-none focus:border-coral text-base" />
         </div>
         <button type="submit" disabled={loading} className="w-full bg-coral text-white font-bold py-3 rounded-xl hover:bg-coral-hover transition-colors disabled:opacity-50">
           {loading ? "جاري الدخول..." : "دخول"}
@@ -60,7 +60,7 @@ function LoginForm() {
 
 export default function LoginPage() {
   return (
-    <div className="min-h-screen bg-navy flex items-center justify-center p-4">
+    <div className="fixed inset-0 bg-navy flex items-center justify-center p-4 overflow-auto">
       <Suspense fallback={<div className="text-white">جاري التحميل...</div>}>
         <LoginForm />
       </Suspense>
