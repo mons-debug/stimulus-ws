@@ -39,13 +39,13 @@ export default function HomePage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-12 items-center">
             {/* Text side — shows first on mobile */}
             <div className="text-center lg:text-right order-1">
-              <div className="inline-block bg-white/10 backdrop-blur-sm text-white/80 text-[10px] lg:text-xs font-bold px-3 lg:px-4 py-1 lg:py-1.5 rounded-full mb-1.5 lg:mb-6 border border-white/10">
+              <div className="inline-block bg-white/10 backdrop-blur-sm text-white/80 text-[10px] lg:text-xs font-bold px-3 lg:px-4 py-1 lg:py-1.5 rounded-full mb-3 lg:mb-6 border border-white/10">
                 NPO #80618910 — إيستونيا
               </div>
-              <h1 className="text-[36px] sm:text-5xl lg:text-7xl font-extrabold text-white leading-[1.05] mb-1.5 lg:mb-6">
+              <h1 className="text-[40px] sm:text-5xl lg:text-7xl font-extrabold text-white leading-[1.1] mb-3 lg:mb-6">
                 <WavyText text="منظمة مجموعات" /><br /><WavyText text="التحفيز" className="text-coral" delay={0.4} />
               </h1>
-              <p className="text-white/60 text-sm lg:text-lg leading-relaxed mb-2.5 lg:mb-10 max-w-lg mx-auto lg:mr-0">
+              <p className="text-white/60 text-sm lg:text-lg leading-relaxed mb-4 lg:mb-10 max-w-lg mx-auto lg:mr-0">
                 منظمة أوروبية غير هادفة للربح تعمل على تحقيق التغيير الإيجابي في مصر وأفريقيا والشرق الأوسط
               </p>
               <div className="flex flex-wrap gap-2.5 lg:gap-3 justify-center lg:justify-start mb-1 lg:mb-0">
