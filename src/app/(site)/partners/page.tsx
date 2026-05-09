@@ -1,22 +1,26 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
+import { prisma } from "@/lib/db";
 
 export const metadata: Metadata = { title: "شركاؤنا" };
+export const revalidate = 60;
 
-const PARTNER_GROUPS = [
-  { country: "CANADA", partners: [{ name: "Partner 1", logo: null }, { name: "Partner 2", logo: null }] },
-  { country: "USA", partners: [{ name: "National Endowment for Democracy", logo: "https://stimulusgroups.org/wp-content/uploads/2023/08/ned.jpg" }, { name: "Partner 2", logo: null }] },
-  { country: "Estonia - Europe", partners: [{ name: "Stimulus Groups", logo: "https://stimulusgroups.org/wp-content/uploads/2023/07/stimulislogo.png" }, { name: "Partner 2", logo: null }] },
-  { country: "Türkiye", partners: [{ name: "Partner 1", logo: null }, { name: "Partner 2", logo: null }] },
-];
+export default async function PartnersPage() {
+  const partners = await prisma.partner.findMany({ orderBy: { sortOrder: "asc" } });
 
-export default function PartnersPage() {
+  const grouped = partners.reduce<Record<string, typeof partners>>((acc, p) => {
+    if (!acc[p.country]) acc[p.country] = [];
+    acc[p.country].push(p);
+    return acc;
+  }, {});
+
   return (
     <>
-      <section className="bg-gradient-to-bl from-navy to-navy-light py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl font-extrabold text-white mb-4">شركاؤنا: تحقيق التغيير معًا</h1>
+      <section className="relative bg-navy overflow-hidden py-10 lg:py-16">
+        <div className="absolute inset-0 bg-[radial-gradient(rgb(255_255_255_/_0.3)_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_50%,black_30%,transparent_100%)]" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-8">
+          <h1 className="text-3xl lg:text-4xl font-extrabold text-white mb-4">شركاؤنا: تحقيق التغيير معًا</h1>
           <div className="flex items-center justify-center gap-2 text-white/60 text-sm">
             <Link href="/" className="hover:text-white">الرئيسية</Link>
             <span>›</span>
@@ -25,28 +29,37 @@ export default function PartnersPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-white">
+      <section className="py-10 lg:py-16 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-xl font-bold text-coral text-center mb-12">تتشارك &quot;منظمة مجموعات التحفيز&quot; وتتعاون في تنفيذ مشروعاتها وتحقيق أهدافها مع العديد من المنظمات الدولية ومن بينهم:</h2>
+          <h2 className="text-sm lg:text-xl font-bold text-coral text-center mb-8 lg:mb-12 leading-relaxed">
+            تتشارك &quot;منظمة مجموعات التحفيز&quot; وتتعاون في تنفيذ مشروعاتها وتحقيق أهدافها مع العديد من المنظمات الدولية ومن بينهم:
+          </h2>
 
-          <div className="space-y-12">
-            {PARTNER_GROUPS.map((group) => (
-              <div key={group.country}>
-                <h3 className="text-2xl font-extrabold text-navy mb-6 text-center">{group.country}</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {group.partners.map((partner) => (
-                    <div key={partner.name} className="bg-warm-gray rounded-2xl border-2 border-border p-8 flex items-center justify-center min-h-[160px]">
-                      {partner.logo ? (
-                        <Image src={partner.logo} alt={partner.name} width={200} height={80} className="max-h-20 w-auto object-contain" />
-                      ) : (
-                        <p className="text-text-light font-semibold">{partner.name}</p>
-                      )}
-                    </div>
-                  ))}
+          {Object.keys(grouped).length === 0 ? (
+            <p className="text-center text-text-light">لا يوجد شركاء حالياً</p>
+          ) : (
+            <div className="space-y-10 lg:space-y-12">
+              {Object.entries(grouped).map(([country, countryPartners]) => (
+                <div key={country}>
+                  <h3 className="text-xl lg:text-2xl font-extrabold text-navy mb-4 lg:mb-6 text-center">{country}</h3>
+                  <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 max-w-3xl mx-auto">
+                    {countryPartners.map((partner) => (
+                      <div key={partner.id} className="bg-warm-gray rounded-xl lg:rounded-2xl border border-border p-4 lg:p-8 flex flex-col items-center justify-center min-h-[100px] lg:min-h-[160px] hover:shadow-lg hover:border-coral/20 transition-all">
+                        {partner.logoUrl ? (
+                          <Image src={partner.logoUrl} alt={partner.name} width={160} height={60} className="max-h-10 lg:max-h-20 w-auto object-contain mb-2 lg:mb-3" />
+                        ) : (
+                          <div className="w-16 h-12 bg-white rounded-lg flex items-center justify-center mb-2">
+                            <span className="text-navy/30 text-xs font-bold">{partner.name.substring(0, 3)}</span>
+                          </div>
+                        )}
+                        <p className="text-navy text-[10px] lg:text-xs font-semibold text-center leading-tight">{partner.name}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
     </>

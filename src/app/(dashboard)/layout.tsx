@@ -6,6 +6,7 @@ const SIDEBAR = [
   { label: "المقالات", href: "/admin/articles", icon: "✎" },
   { label: "الكُتّاب", href: "/admin/authors", icon: "👤" },
   { label: "المشروعات", href: "/admin/projects", icon: "📋" },
+  { label: "الشركاء", href: "/admin/partners", icon: "🤝" },
   { label: "الفئات", href: "/admin/categories", icon: "📂" },
   { label: "التعليقات", href: "/admin/comments", icon: "💬" },
   { label: "رسائل التواصل", href: "/admin/contacts", icon: "✉" },

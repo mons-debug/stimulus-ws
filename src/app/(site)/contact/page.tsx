@@ -32,9 +32,9 @@ export default function ContactPage() {
 
   return (
     <>
-      <section className="bg-gradient-to-bl from-navy to-navy-light py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl font-extrabold text-white mb-4">تواصل معنا</h1>
+      <section className="relative bg-navy overflow-hidden py-10 lg:py-16"><div className="absolute inset-0 bg-[radial-gradient(rgb(255_255_255_/_0.3)_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_50%,black_30%,transparent_100%)]" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-8">
+          <h1 className="text-3xl lg:text-4xl font-extrabold text-white mb-4">تواصل معنا</h1>
           <div className="flex items-center justify-center gap-2 text-white/60 text-sm">
             <Link href="/" className="hover:text-white">الرئيسية</Link>
             <span>›</span><span>تواصل معنا</span>
@@ -62,7 +62,7 @@ export default function ContactPage() {
 
           <div className="rounded-2xl overflow-hidden mb-12 border border-border">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2000!2d27.0!3d57.8!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1"
+              src="https://maps.google.com/maps?q=F.+R.+Kreutzwaldi+tn+43b,+V%C3%B5ru,+65610,+Estonia&t=&z=15&ie=UTF8&iwloc=&output=embed"
               width="100%"
               height="300"
               style={{ border: 0 }}

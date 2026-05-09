@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { prisma } from "@/lib/db";
 import { notFound } from "next/navigation";
 import { GalleryGrid } from "@/components/ui/Lightbox";
+import { ReadMoreContent } from "@/components/ui/ReadMoreContent";
 
 type Props = { params: Promise<{ slug: string }> };
 export const revalidate = 60;
@@ -31,52 +32,61 @@ export default async function ArticlePage({ params }: Props) {
 
   return (
     <>
-      <section className="bg-gradient-to-bl from-navy to-navy-light py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-3xl sm:text-4xl font-bold text-white mb-4">{article.title}</h1>
-          <div className="flex items-center justify-center gap-4 text-white/60 text-sm">
+      <section className="relative bg-navy overflow-hidden py-10 lg:py-16">
+        <div className="absolute inset-0 bg-[radial-gradient(rgb(255_255_255_/_0.3)_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_50%,black_30%,transparent_100%)]" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+          <div className="flex items-center gap-2 text-white/50 text-[10px] lg:text-xs mb-4">
+            <Link href="/" className="hover:text-white transition-colors">الرئيسية</Link>
+            <span>‹</span>
+            <Link href="/blog" className="hover:text-white transition-colors">مدونة</Link>
+            {article.category && (
+              <>
+                <span>‹</span>
+                <span className="text-white/70">{article.category.name}</span>
+              </>
+            )}
+          </div>
+          <h1 className="text-lg sm:text-2xl lg:text-3xl font-bold text-white mb-3 leading-snug max-w-3xl">{article.title}</h1>
+          <div className="flex items-center gap-3 text-white/60 text-xs">
             <span>{article.publishedAt?.toLocaleDateString("ar-EG", { year: "numeric", month: "long", day: "numeric" })}</span>
             {article.category && (
-              <Link href={`/blog?category=${article.category.name}`} className="bg-coral/20 text-coral px-3 py-0.5 rounded-full text-xs font-bold hover:bg-coral/30 transition-colors">
-                {article.category.name}
-              </Link>
+              <span className="bg-coral/20 text-coral px-2.5 py-0.5 rounded-full text-[10px] font-bold">{article.category.name}</span>
             )}
           </div>
         </div>
       </section>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-10">
           <article className="lg:col-span-2">
             {/* Author card */}
-            <div className="bg-white rounded-2xl p-6 border border-border mb-6 flex items-center gap-4">
+            <div className="bg-white rounded-xl lg:rounded-2xl p-4 lg:p-6 border border-border mb-4 lg:mb-6 flex items-center gap-3 lg:gap-4">
               {article.author?.imageUrl ? (
-                <Image src={article.author.imageUrl} alt={article.author.name} width={56} height={56} className="w-14 h-14 rounded-full object-cover flex-shrink-0" />
+                <Image src={article.author.imageUrl} alt={article.author.name} width={56} height={56} className="w-10 h-10 lg:w-14 lg:h-14 rounded-full object-cover flex-shrink-0" />
               ) : (
-                <div className="w-14 h-14 rounded-full bg-navy/10 flex items-center justify-center text-navy font-bold text-xl flex-shrink-0">
+                <div className="w-10 h-10 lg:w-14 lg:h-14 rounded-full bg-navy/10 flex items-center justify-center text-navy font-bold text-base lg:text-xl flex-shrink-0">
                   {(article.author?.name || article.authorName).charAt(0)}
                 </div>
               )}
-              <div>
-                <Link href={`/blog?author=${article.author?.slug || ""}`} className="font-bold text-navy hover:text-coral transition-colors">
+              <div className="flex-1 min-w-0">
+                <Link href={`/blog?author=${article.author?.slug || ""}`} className="font-bold text-navy hover:text-coral transition-colors text-sm lg:text-base">
                   {article.author?.name || article.authorName}
                 </Link>
-                {article.author?.bio && <p className="text-text-light text-xs mt-0.5">{article.author.bio}</p>}
-                <p className="text-text-light text-xs mt-0.5">{article.publishedAt?.toLocaleDateString("ar-EG", { year: "numeric", month: "long", day: "numeric" })}</p>
+                {article.author?.bio && <p className="text-text-light text-[10px] lg:text-xs mt-0.5 truncate">{article.author.bio}</p>}
               </div>
               {article.category && (
-                <Link href={`/blog?category=${article.category.name}`} className="mr-auto bg-coral/10 text-coral text-xs font-bold px-3 py-1.5 rounded-full hover:bg-coral/20 transition-colors">
+                <Link href={`/blog?category=${article.category.name}`} className="hidden sm:block mr-auto bg-coral/10 text-coral text-xs font-bold px-3 py-1.5 rounded-full hover:bg-coral/20 transition-colors flex-shrink-0">
                   {article.category.name}
                 </Link>
               )}
             </div>
 
-            <div className="bg-white rounded-2xl p-8 sm:p-12 border border-border">
+            <div className="bg-white rounded-xl lg:rounded-2xl p-5 sm:p-8 lg:p-12 border border-border">
               {article.featuredImage && (
-                <div className="mb-8 rounded-xl overflow-hidden">
+                <div className="mb-5 lg:mb-8 rounded-lg lg:rounded-xl overflow-hidden -mx-1 lg:mx-0">
                   <Image src={article.featuredImage} alt={article.title} width={800} height={450} className="w-full object-cover" />
                 </div>
               )}
-              <div className="prose-arabic" dangerouslySetInnerHTML={{ __html: article.content }} />
+              <ReadMoreContent html={article.content} />
 
               {/* Gallery with lightbox */}
               {article.galleryImages && article.galleryImages.length > 0 && (

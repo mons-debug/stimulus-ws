@@ -20,6 +20,7 @@ export const SITE_CONFIG = {
 } as const;
 
 export const NAV_LINKS = [
+  { label: "الرئيسية", href: "/" },
   { label: "من نحن", href: "/about" },
   { label: "خدماتنا", href: "/services" },
   { label: "شركاؤنا", href: "/partners" },

@@ -29,9 +29,9 @@ const SERVICES = [
 export default function ServicesPage() {
   return (
     <>
-      <section className="bg-gradient-to-bl from-navy to-navy-light py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl font-extrabold text-white mb-4">خدماتنا</h1>
+      <section className="relative bg-navy overflow-hidden py-10 lg:py-16"><div className="absolute inset-0 bg-[radial-gradient(rgb(255_255_255_/_0.3)_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_50%,black_30%,transparent_100%)]" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-8">
+          <h1 className="text-3xl lg:text-4xl font-extrabold text-white mb-4">خدماتنا</h1>
           <div className="flex items-center justify-center gap-2 text-white/60 text-sm">
             <Link href="/" className="hover:text-white">الرئيسية</Link>
             <span>›</span>
