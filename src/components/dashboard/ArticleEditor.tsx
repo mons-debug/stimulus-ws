@@ -90,7 +90,7 @@ export function ArticleEditor({
 
   return (
     <div className="max-w-4xl">
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex items-center justify-between mb-4 lg:mb-8">
         <h1 className="text-3xl font-extrabold text-navy">
           {article?.id ? "تعديل المقال" : "مقال جديد"}
         </h1>
@@ -237,7 +237,7 @@ export function ArticleEditor({
               }
             }
           }} accept="image/*" multiple className="hidden" />
-          <div className="grid grid-cols-4 gap-3 mb-3">
+          <div className="grid grid-cols-3 lg:grid-cols-4 gap-2 lg:gap-3 mb-3">
             {(form.galleryImages || []).map((img: string, i: number) => (
               <div key={i} className="relative group">
                 <Image src={img} alt="" width={150} height={100} className="w-full h-24 object-cover rounded-lg" />

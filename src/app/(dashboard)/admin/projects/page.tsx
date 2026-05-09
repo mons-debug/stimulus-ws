@@ -6,11 +6,11 @@ export default async function ProjectsListPage() {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-8">
-        <h1 className="text-3xl font-extrabold text-navy">المشروعات</h1>
-        <Link href="/admin/projects/new" className="bg-coral text-white font-bold px-6 py-3 rounded-xl hover:bg-coral-hover transition-colors text-sm">+ مشروع جديد</Link>
+      <div className="flex items-center justify-between mb-4 lg:mb-8">
+        <h1 className="text-xl lg:text-3xl font-extrabold text-navy">المشروعات</h1>
+        <Link href="/admin/projects/new" className="bg-coral text-white font-bold px-4 lg:px-6 py-2.5 lg:py-3 rounded-xl hover:bg-coral-hover transition-colors text-sm">+ مشروع جديد</Link>
       </div>
-      <div className="space-y-4 max-w-3xl">
+      <div className="space-y-4 max-w-4xl">
         {projects.map((p) => (
           <div key={p.id} className="bg-white rounded-2xl p-6 border border-border flex items-center justify-between">
             <div>

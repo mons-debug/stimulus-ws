@@ -41,7 +41,7 @@ export default function CategoriesPage() {
 
   return (
     <div>
-      <h1 className="text-3xl font-extrabold text-navy mb-8">الفئات</h1>
+      <h1 className="text-xl lg:text-3xl font-extrabold text-navy mb-8">الفئات</h1>
 
       <div className="bg-white rounded-2xl p-6 border border-border mb-8 max-w-xl">
         <h2 className="text-lg font-bold text-navy mb-4">إضافة فئة جديدة</h2>
@@ -54,7 +54,7 @@ export default function CategoriesPage() {
             className="flex-1 px-4 py-3 border border-border rounded-xl focus:outline-none focus:border-coral text-sm"
             onKeyDown={(e) => e.key === "Enter" && handleAdd()}
           />
-          <button onClick={handleAdd} className="bg-coral text-white font-bold px-6 py-3 rounded-xl hover:bg-coral-hover transition-colors text-sm">
+          <button onClick={handleAdd} className="bg-coral text-white font-bold px-4 lg:px-6 py-2.5 lg:py-3 rounded-xl hover:bg-coral-hover transition-colors text-sm">
             إضافة
           </button>
         </div>

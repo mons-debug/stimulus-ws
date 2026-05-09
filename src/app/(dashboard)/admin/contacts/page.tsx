@@ -5,7 +5,7 @@ export default async function ContactsPage() {
 
   return (
     <div>
-      <h1 className="text-3xl font-extrabold text-navy mb-8">رسائل التواصل</h1>
+      <h1 className="text-xl lg:text-3xl font-extrabold text-navy mb-8">رسائل التواصل</h1>
       {contacts.length === 0 ? (
         <div className="bg-white rounded-2xl p-12 border border-border text-center">
           <p className="text-text-light text-lg">لا توجد رسائل بعد</p>

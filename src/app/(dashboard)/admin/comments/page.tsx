@@ -12,9 +12,9 @@ export default async function CommentsPage() {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex items-center justify-between mb-4 lg:mb-8">
         <div>
-          <h1 className="text-3xl font-extrabold text-navy">التعليقات</h1>
+          <h1 className="text-xl lg:text-3xl font-extrabold text-navy">التعليقات</h1>
           <p className="text-text-light text-sm mt-1">{comments.length} تعليق — {pending} معلق</p>
         </div>
       </div>

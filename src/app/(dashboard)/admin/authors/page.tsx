@@ -66,7 +66,7 @@ export default function AuthorsPage() {
 
   return (
     <div>
-      <h1 className="text-3xl font-extrabold text-navy mb-8">الكُتّاب</h1>
+      <h1 className="text-xl lg:text-3xl font-extrabold text-navy mb-8">الكُتّاب</h1>
 
       <div className="bg-white rounded-2xl p-6 border border-border mb-8 max-w-2xl">
         <h2 className="text-lg font-bold text-navy mb-4">{editing ? "تعديل الكاتب" : "إضافة كاتب جديد"}</h2>
@@ -90,11 +90,11 @@ export default function AuthorsPage() {
             </div>
           </div>
           <div className="flex gap-3">
-            <button onClick={handleSave} className="bg-coral text-white font-bold px-6 py-3 rounded-xl hover:bg-coral-hover transition-colors text-sm">
+            <button onClick={handleSave} className="bg-coral text-white font-bold px-4 lg:px-6 py-2.5 lg:py-3 rounded-xl hover:bg-coral-hover transition-colors text-sm">
               {editing ? "حفظ التعديلات" : "إضافة"}
             </button>
             {editing && (
-              <button onClick={() => { setEditing(null); setForm({ name: "", bio: "", imageUrl: "" }); }} className="bg-warm-gray text-navy font-bold px-6 py-3 rounded-xl text-sm">
+              <button onClick={() => { setEditing(null); setForm({ name: "", bio: "", imageUrl: "" }); }} className="bg-warm-gray text-navy font-bold px-4 lg:px-6 py-2.5 lg:py-3 rounded-xl text-sm">
                 إلغاء
               </button>
             )}

@@ -5,8 +5,8 @@ export default async function SubscribersPage() {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-8">
-        <h1 className="text-3xl font-extrabold text-navy">مشتركين النشرة البريدية</h1>
+      <div className="flex items-center justify-between mb-4 lg:mb-8">
+        <h1 className="text-xl lg:text-3xl font-extrabold text-navy">مشتركين النشرة البريدية</h1>
         <p className="text-text-light text-sm">{subscribers.length} مشترك</p>
       </div>
       {subscribers.length === 0 ? (

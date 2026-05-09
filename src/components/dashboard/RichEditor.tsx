@@ -13,7 +13,7 @@ import Youtube from "@tiptap/extension-youtube";
 function Btn({ active, onClick, children, title }: { active?: boolean; onClick: () => void; children: React.ReactNode; title: string }) {
   return (
     <button type="button" onClick={onClick} title={title}
-      className={`w-9 h-9 flex items-center justify-center rounded-lg text-sm font-bold transition-colors ${active ? "bg-coral text-white" : "bg-white text-navy hover:bg-warm-gray"}`}>
+      className={`w-7 h-7 lg:w-9 lg:h-9 flex items-center justify-center rounded-md lg:rounded-lg text-xs lg:text-sm font-bold transition-colors ${active ? "bg-coral text-white" : "bg-white text-navy hover:bg-warm-gray"}`}>
       {children}
     </button>
   );
@@ -92,7 +92,7 @@ export function RichEditor({ content, onChange }: { content: string; onChange: (
   return (
     <div className="border border-border rounded-2xl overflow-hidden bg-white">
       <input type="file" ref={imgRef} onChange={handleImageUpload} accept="image/*" className="hidden" />
-      <div className="flex flex-wrap items-center gap-1 p-3 bg-[#F8F8F8] border-b border-border">
+      <div className="flex flex-wrap items-center gap-0.5 lg:gap-1 p-2 lg:p-3 bg-[#F8F8F8] border-b border-border sticky top-14 lg:top-0 z-10"
         <Btn active={editor.isActive("heading", { level: 2 })} onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()} title="عنوان رئيسي">H2</Btn>
         <Btn active={editor.isActive("heading", { level: 3 })} onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()} title="عنوان فرعي">H3</Btn>
         <Sep />

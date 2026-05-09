@@ -15,7 +15,7 @@ export default async function SettingsPage() {
 
   return (
     <div>
-      <h1 className="text-3xl font-extrabold text-navy mb-8">الإعدادات</h1>
+      <h1 className="text-xl lg:text-3xl font-extrabold text-navy mb-8">الإعدادات</h1>
       <div className="bg-white rounded-2xl p-8 border border-border max-w-2xl">
         <form className="space-y-6">
           {fields.map((f) => (

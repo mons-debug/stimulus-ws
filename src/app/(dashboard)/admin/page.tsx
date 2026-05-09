@@ -24,8 +24,8 @@ export default async function AdminDashboard() {
 
   return (
     <div>
-      <h1 className="text-3xl font-extrabold text-navy mb-8">لوحة التحكم</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+      <h1 className="text-xl lg:text-3xl font-extrabold text-navy mb-4 lg:mb-8">لوحة التحكم</h1>
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-6 mb-6 lg:mb-10">
         {stats.map((s) => (
           <Link key={s.label} href={s.href} className="bg-white rounded-2xl p-6 border border-border hover:shadow-lg transition-all group">
             <div className={`w-12 h-12 ${s.color} rounded-xl flex items-center justify-center text-white text-xl font-bold mb-4`}>

@@ -47,7 +47,7 @@ export default function PartnersAdmin() {
 
   return (
     <div>
-      <h1 className="text-3xl font-extrabold text-navy mb-8">الشركاء</h1>
+      <h1 className="text-xl lg:text-3xl font-extrabold text-navy mb-8">الشركاء</h1>
 
       <div className="bg-white rounded-2xl p-6 border border-border mb-8 max-w-2xl">
         <h2 className="text-lg font-bold text-navy mb-4">إضافة شريك جديد</h2>
@@ -63,7 +63,7 @@ export default function PartnersAdmin() {
           </button>
           {logoUrl && <Image src={logoUrl} alt="" width={80} height={40} className="max-h-10 w-auto object-contain" />}
         </div>
-        <button onClick={handleAdd} className="bg-coral text-white font-bold px-6 py-3 rounded-xl hover:bg-coral-hover transition-colors text-sm">إضافة</button>
+        <button onClick={handleAdd} className="bg-coral text-white font-bold px-4 lg:px-6 py-2.5 lg:py-3 rounded-xl hover:bg-coral-hover transition-colors text-sm">إضافة</button>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl">
