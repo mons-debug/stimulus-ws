@@ -115,70 +115,62 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ===== مشروعاتنا ===== */}
+      {/* ===== مشروعاتنا — Apple-style glass cards ===== */}
       {projects.length > 0 && (
-      <section className="relative py-14 lg:py-24 bg-navy overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(rgb(255_255_255_/_0.08)_1px,transparent_1px)] [background-size:20px_20px]" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-coral/5 rounded-full blur-[150px]" />
+      <section className="relative py-14 lg:py-24 bg-gradient-to-b from-[#0a1628] to-navy overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(rgb(255_255_255_/_0.05)_1px,transparent_1px)] [background-size:24px_24px]" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-coral/[0.07] rounded-full blur-[200px]" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-8 lg:mb-14">
-            <div>
-              <div className="inline-flex items-center gap-2 mb-3">
-                <span className="w-8 h-[3px] bg-coral rounded-full" />
-                <p className="text-coral text-xs lg:text-sm font-bold">مشروعاتنا</p>
-              </div>
-              <h2 className="text-2xl lg:text-4xl font-extrabold text-white leading-snug">نعمل على تحقيق التغيير<br className="hidden lg:block" /> من خلال مشاريعنا</h2>
-            </div>
-            <Link href="/projects" className="inline-flex items-center gap-2 bg-white/10 text-white font-bold px-5 py-2.5 rounded-xl hover:bg-white/20 transition-colors text-xs lg:text-sm border border-white/10 w-fit">
+          <div className="text-center mb-10 lg:mb-16">
+            <p className="text-coral text-xs lg:text-sm font-semibold tracking-wider mb-3">مشروعاتنا</p>
+            <h2 className="text-2xl lg:text-5xl font-extrabold text-white leading-snug mb-4">نصنع التغيير من خلال مشاريعنا</h2>
+            <p className="text-white/40 text-sm lg:text-base max-w-xl mx-auto">نعمل على مشاريع مؤثرة تهدف إلى تحقيق التغيير الإيجابي في مصر وأفريقيا والشرق الأوسط</p>
+          </div>
+
+          {/* 3 Glass cards side by side */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-5 mb-10">
+            {projects.map((project, i) => {
+              const colors = ["from-coral/20 to-coral/5", "from-[#3B82F6]/20 to-[#3B82F6]/5", "from-[#25D366]/20 to-[#25D366]/5"];
+              const accents = ["bg-coral", "bg-[#3B82F6]", "bg-[#25D366]"];
+              const icons = [
+                <svg key="0" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 12l2 3 6-6"/></svg>,
+                <svg key="1" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>,
+                <svg key="2" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>,
+              ];
+              return (
+                <Link key={project.id} href={`/projects/${project.slug}`}
+                  className="group relative rounded-2xl lg:rounded-3xl overflow-hidden backdrop-blur-sm bg-white/[0.04] border border-white/[0.08] hover:border-white/20 hover:bg-white/[0.08] transition-all duration-500 hover:-translate-y-1">
+                  {/* Top gradient strip */}
+                  <div className={`h-40 lg:h-48 bg-gradient-to-b ${colors[i]} relative`}>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className={`w-16 h-16 lg:w-20 lg:h-20 rounded-2xl ${accents[i]}/10 flex items-center justify-center text-white/70 group-hover:scale-110 transition-transform duration-500`}>
+                        {icons[i]}
+                      </div>
+                    </div>
+                    <div className="absolute top-4 right-4">
+                      <span className="bg-white/10 backdrop-blur-md text-white/80 text-[9px] lg:text-[10px] font-bold px-2.5 py-1 rounded-full border border-white/10">{String(i + 1).padStart(2, "0")}</span>
+                    </div>
+                  </div>
+                  {/* Content */}
+                  <div className="p-5 lg:p-7">
+                    <h3 className="text-base lg:text-lg font-extrabold text-white mb-2 group-hover:text-coral transition-colors leading-snug">{project.title}</h3>
+                    <p className="text-white/40 text-xs lg:text-sm leading-relaxed line-clamp-2 mb-5">{project.description}</p>
+                    <div className="flex items-center justify-between">
+                      <span className="text-coral text-xs font-bold group-hover:underline">تفاصيل المشروع</span>
+                      <svg className="w-4 h-4 text-white/20 group-hover:text-coral group-hover:-translate-x-1 transition-all" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M19 12H5"/><path d="M12 5l-7 7 7 7"/></svg>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+
+          <div className="text-center">
+            <Link href="/projects" className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white font-semibold px-6 py-3 rounded-full hover:bg-white/20 transition-all text-sm border border-white/10 hover:border-white/20">
               عرض جميع المشاريع
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M19 12H5"/><path d="M12 5l-7 7 7 7"/></svg>
             </Link>
           </div>
-
-          {/* First project — featured large card */}
-          <Link href={`/projects/${projects[0].slug}`}
-            className="group block relative rounded-2xl lg:rounded-3xl overflow-hidden mb-4 lg:mb-6 border border-white/10 hover:border-coral/30 transition-all">
-            <div className="grid grid-cols-1 lg:grid-cols-2">
-              <div className="relative min-h-[200px] lg:min-h-[320px] bg-gradient-to-br from-coral/20 to-navy-light">
-                {projects[0].partnerLogos[0] ? (
-                  <Image src={projects[0].partnerLogos[0]} alt="" fill className="object-contain p-12 lg:p-16 opacity-30 group-hover:opacity-50 transition-opacity" />
-                ) : (
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-[80px] lg:text-[120px] font-black text-white/5">01</span>
-                  </div>
-                )}
-                <div className="absolute top-4 right-4 lg:top-6 lg:right-6">
-                  <span className="bg-coral text-white text-[10px] lg:text-xs font-bold px-3 py-1.5 rounded-full">المشروع الرئيسي</span>
-                </div>
-              </div>
-              <div className="p-6 lg:p-10 flex flex-col justify-center bg-white/5">
-                <h3 className="text-xl lg:text-3xl font-extrabold text-white mb-3 lg:mb-4 group-hover:text-coral transition-colors leading-snug">{projects[0].title}</h3>
-                <p className="text-white/50 text-xs lg:text-sm leading-relaxed mb-4 lg:mb-6 line-clamp-3">{projects[0].description}</p>
-                <div className="flex items-center gap-2 text-coral text-sm font-bold">
-                  <span>تفاصيل المشروع</span>
-                  <svg className="w-4 h-4 group-hover:-translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M19 12H5"/><path d="M12 5l-7 7 7 7"/></svg>
-                </div>
-              </div>
-            </div>
-          </Link>
-
-          {/* Other projects — smaller cards */}
-          {projects.length > 1 && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
-            {projects.slice(1).map((project, i) => (
-              <Link key={project.id} href={`/projects/${project.slug}`}
-                className="group relative rounded-2xl overflow-hidden border border-white/10 hover:border-coral/30 bg-white/5 p-6 lg:p-8 transition-all hover:bg-white/10">
-                <div className="absolute top-0 right-0 text-[60px] lg:text-[80px] font-black text-white/[0.03] leading-none select-none">{String(i + 2).padStart(2, "0")}</div>
-                <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 ${i === 0 ? "bg-[#3B82F6]/20" : "bg-[#25D366]/20"}`}>
-                  <svg className={`w-5 h-5 ${i === 0 ? "text-[#3B82F6]" : "text-[#25D366]"}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                </div>
-                <h3 className="text-base lg:text-xl font-extrabold text-white mb-2 group-hover:text-coral transition-colors leading-snug">{project.title}</h3>
-                <p className="text-white/40 text-xs lg:text-sm leading-relaxed line-clamp-2 mb-4">{project.description}</p>
-                <span className="text-coral text-xs font-bold">إقرأ المزيد ←</span>
-              </Link>
-            ))}
-          </div>
-          )}
         </div>
       </section>
       )}
