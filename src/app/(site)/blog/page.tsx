@@ -59,7 +59,7 @@ export default async function BlogPage({ searchParams }: Props) {
       </section>
 
       {/* Mobile: horizontal filter chips */}
-      <div className="lg:hidden bg-white border-b border-border sticky top-20 z-30">
+      <div className="lg:hidden bg-white border-b border-border">
         <div className="flex gap-2 overflow-x-auto px-4 py-3 scrollbar-hide">
           <Link href="/blog" className={`flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-bold transition-colors ${!categoryFilter && !authorFilter ? "bg-coral text-white" : "bg-warm-gray text-navy hover:bg-coral/10"}`}>
             الكل
