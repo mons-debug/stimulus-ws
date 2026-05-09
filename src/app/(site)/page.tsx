@@ -35,17 +35,17 @@ export default function HomePage() {
         <div className="absolute -top-40 left-1/4 w-[500px] h-[500px] bg-white/[0.03] rounded-full blur-[100px]" />
         <div className="absolute -bottom-40 -right-20 w-[500px] h-[500px] bg-coral/15 rounded-full blur-[120px]" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col justify-center min-h-screen pt-14 pb-4 lg:pt-28 lg:pb-12">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-12 items-center">
+          <div className="flex flex-col justify-center min-h-screen pt-12 pb-3 lg:pt-28 lg:pb-12">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-12 items-center">
             {/* Text side — shows first on mobile */}
             <div className="text-center lg:text-right order-1">
-              <div className="inline-block bg-white/10 backdrop-blur-sm text-white/80 text-[10px] lg:text-xs font-bold px-3 lg:px-4 py-1 lg:py-1.5 rounded-full mb-2 lg:mb-6 border border-white/10">
+              <div className="inline-block bg-white/10 backdrop-blur-sm text-white/80 text-[10px] lg:text-xs font-bold px-3 lg:px-4 py-1 lg:py-1.5 rounded-full mb-1.5 lg:mb-6 border border-white/10">
                 NPO #80618910 — إيستونيا
               </div>
-              <h1 className="text-[32px] sm:text-5xl lg:text-7xl font-extrabold text-white leading-[1.1] mb-2 lg:mb-6">
+              <h1 className="text-[36px] sm:text-5xl lg:text-7xl font-extrabold text-white leading-[1.05] mb-1.5 lg:mb-6">
                 <WavyText text="منظمة مجموعات" /><br /><WavyText text="التحفيز" className="text-coral" delay={0.4} />
               </h1>
-              <p className="text-white/60 text-xs lg:text-lg leading-relaxed mb-3 lg:mb-10 max-w-lg mx-auto lg:mr-0">
+              <p className="text-white/60 text-sm lg:text-lg leading-relaxed mb-2.5 lg:mb-10 max-w-lg mx-auto lg:mr-0">
                 منظمة أوروبية غير هادفة للربح تعمل على تحقيق التغيير الإيجابي في مصر وأفريقيا والشرق الأوسط
               </p>
               <div className="flex flex-wrap gap-2.5 lg:gap-3 justify-center lg:justify-start mb-1 lg:mb-0">
