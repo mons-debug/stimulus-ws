@@ -128,7 +128,10 @@ body {
 
 .parallax-bg {
   position: absolute;
-  inset: -30% 0;
+  top: -30%;
+  bottom: -30%;
+  left: 0;
+  right: 0;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -137,8 +140,9 @@ body {
 
 @media (max-width: 1024px) {
   .parallax-bg {
-    background-attachment: scroll;
-    inset: -20% 0;
+    background-attachment: scroll !important;
+    top: -15%;
+    bottom: -15%;
   }
 }
 
