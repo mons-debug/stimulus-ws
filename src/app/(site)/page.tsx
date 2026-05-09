@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { WavyText } from "@/components/ui/wavy-text";
+import { prisma } from "@/lib/db";
 
 const LATEST_ARTICLES = [
   {
@@ -23,7 +24,9 @@ const LATEST_ARTICLES = [
   },
 ];
 
-export default function HomePage() {
+export default async function HomePage() {
+  const projects = await prisma.project.findMany({ orderBy: { sortOrder: "asc" }, take: 3 });
+
   return (
     <>
       {/* ===== HERO ===== */}
@@ -111,6 +114,50 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ===== مشروعاتنا ===== */}
+      {projects.length > 0 && (
+      <section className="py-12 lg:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8 lg:mb-14">
+            <div className="inline-flex items-center gap-2 mb-3">
+              <span className="w-8 h-[3px] bg-coral rounded-full" />
+              <p className="text-coral text-xs lg:text-sm font-bold">مشروعاتنا</p>
+              <span className="w-8 h-[3px] bg-coral rounded-full" />
+            </div>
+            <h2 className="text-2xl lg:text-4xl font-extrabold text-navy">نعمل على تحقيق التغيير من خلال مشاريعنا</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
+            {projects.map((project, i) => (
+              <Link key={project.id} href={`/projects/${project.slug}`}
+                className="group relative bg-navy rounded-2xl overflow-hidden min-h-[220px] lg:min-h-[300px] flex items-end p-5 lg:p-8 hover:shadow-2xl transition-all">
+                {project.partnerLogos[0] && (
+                  <div className="absolute inset-0">
+                    <Image src={project.partnerLogos[0]} alt="" fill className="object-contain opacity-[0.06] scale-150" />
+                  </div>
+                )}
+                <div className={`absolute top-0 left-0 right-0 h-1.5 ${i === 0 ? "bg-coral" : i === 1 ? "bg-[#3B82F6]" : "bg-[#25D366]"}`} />
+                <div className="relative z-10">
+                  <span className="inline-block bg-white/10 text-white/70 text-[10px] lg:text-xs font-bold px-2.5 py-1 rounded-full mb-3 border border-white/10">مشروع {String(i + 1).padStart(2, "0")}</span>
+                  <h3 className="text-lg lg:text-2xl font-extrabold text-white mb-2 group-hover:text-coral transition-colors leading-snug">{project.title}</h3>
+                  <p className="text-white/50 text-xs lg:text-sm leading-relaxed line-clamp-2">{project.description}</p>
+                  <div className="mt-4 flex items-center gap-1.5 text-coral text-xs lg:text-sm font-bold">
+                    <span>إقرأ المزيد</span>
+                    <svg className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M19 12H5"/><path d="M12 5l-7 7 7 7"/></svg>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+          <div className="text-center mt-8">
+            <Link href="/projects" className="inline-flex items-center gap-2 text-navy font-bold hover:text-coral transition-colors text-sm lg:text-base">
+              عرض جميع المشاريع
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M19 12H5"/><path d="M12 5l-7 7 7 7"/></svg>
+            </Link>
+          </div>
+        </div>
+      </section>
+      )}
 
       {/* ===== ABOUT + من نحن ===== */}
       <section className="py-10 lg:py-20 bg-[#F4F4F4]">
