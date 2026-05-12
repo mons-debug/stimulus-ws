@@ -33,7 +33,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
   }, [open]);
 
   return (
-    <div dir="rtl">
+    <div dir="rtl" className="overflow-x-hidden">
       {/* Mobile top bar */}
       <div className="lg:hidden fixed top-0 left-0 right-0 z-30 bg-navy h-14 flex items-center justify-between px-4">
         <button onClick={() => setOpen(true)} className="text-white p-1">
@@ -90,7 +90,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
       </>
 
       {/* Main content */}
-      <div className="lg:mr-64 bg-warm-gray min-h-screen pt-16 lg:pt-6 p-4 lg:p-8 pb-24">
+      <div className="lg:mr-64 bg-warm-gray min-h-screen pt-16 lg:pt-6 p-4 lg:p-8 pb-24 overflow-x-hidden">
         {children}
       </div>
     </div>
