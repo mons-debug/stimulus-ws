@@ -234,3 +234,38 @@ body {
   position: relative;
   z-index: 2;
 }
+
+/* ===== MOBILE RESPONSIVE (from Claude Design spec) ===== */
+@media (max-width: 640px) {
+  /* Buttons — 44px min touch target */
+  a[class*="bg-coral"], a[class*="bg-navy"], button[type="submit"] {
+    min-height: 44px;
+    font-size: 14px;
+  }
+
+  /* Section headings scale down */
+  h1[class*="font-black"], h2[class*="font-black"] {
+    letter-spacing: -0.01em;
+  }
+
+  /* Pillar cards — less padding, no min-height */
+  section[class*="bg-paper"] > div > div[class*="border-rule"] > a,
+  section[class*="bg-paper"] > div > div[class*="border-rule"] > div {
+    min-height: auto;
+  }
+
+  /* Article prose — optimized reading */
+  .prose-arabic {
+    font-size: 17px;
+    line-height: 1.85;
+  }
+  .prose-arabic h2 { font-size: 22px; }
+  .prose-arabic h3 { font-size: 18px; }
+}
+
+/* ===== TABLET (≤ 960px) ===== */
+@media (max-width: 960px) {
+  /* Tables → horizontal scroll */
+  table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  thead, tbody, tr { min-width: 600px; }
+}

@@ -56,8 +56,8 @@ export default async function BlogPage({ searchParams }: Props) {
             <span>/</span>
             <span className="text-white/70">المدوّنة</span>
           </div>
-          <h1 className="text-2xl sm:text-4xl lg:text-[56px] font-black text-white leading-[1.05] tracking-tight">المدوّنة والمقالات.</h1>
-          <p className="text-white/60 text-sm lg:text-lg leading-relaxed mt-4">{totalCount} مقالاً وبحثاً منشوراً — تُحدَّث باستمرار.</p>
+          <h1 className="text-[28px] sm:text-[38px] lg:text-[56px] font-black text-white leading-[1.05] tracking-tight">المدوّنة والمقالات.</h1>
+          <p className="text-white/60 text-[13px] lg:text-lg leading-relaxed mt-4">{totalCount} مقالاً وبحثاً منشوراً — تُحدَّث باستمرار.</p>
         </div>
       </section>
 

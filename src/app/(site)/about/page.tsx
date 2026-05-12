@@ -32,10 +32,10 @@ export default function AboutPage() {
             <span>/</span>
             <span className="text-white/70">من نحن</span>
           </div>
-          <h1 className="text-2xl sm:text-4xl lg:text-[56px] font-black text-white leading-[1.05] tracking-tight">
+          <h1 className="text-[28px] sm:text-[38px] lg:text-[56px] font-black text-white leading-[1.05] tracking-tight">
             بيت فكر مستقل،<br />يعمل على المدى الطويل.
           </h1>
-          <p className="text-white/60 text-sm lg:text-lg leading-relaxed mt-4 max-w-[60ch]">
+          <p className="text-white/60 text-[13px] lg:text-lg leading-relaxed mt-4 max-w-[60ch]">
             منظمة أوروبية غير هادفة للربح مقرها إيستونيا، تعمل في مصر وأفريقيا والشرق الأوسط على إنتاج المعرفة وتيسير الحوار العام وبناء قدرات الجيل القادم.
           </p>
           <div className="flex flex-wrap gap-x-10 gap-y-3 mt-6 text-white/50 text-xs font-mono tracking-wide">

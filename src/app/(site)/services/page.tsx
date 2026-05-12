@@ -61,10 +61,10 @@ export default function ServicesPage() {
             <span>/</span>
             <span className="text-white/70">خدماتنا</span>
           </div>
-          <h1 className="text-2xl sm:text-4xl lg:text-[56px] font-black text-white leading-[1.05] tracking-tight">
+          <h1 className="text-[28px] sm:text-[38px] lg:text-[56px] font-black text-white leading-[1.05] tracking-tight">
             أربعة برامج،<br />هدف <span className="text-coral">واحد</span>.
           </h1>
-          <p className="text-white/60 text-sm lg:text-lg leading-relaxed mt-4 max-w-[60ch]">
+          <p className="text-white/60 text-[13px] lg:text-lg leading-relaxed mt-4 max-w-[60ch]">
             تقوم مجموعات التحفيز بأنشطة متعددة يمكن إجمالها تحت أربعة عناوين رئيسية.
           </p>
         </div>
