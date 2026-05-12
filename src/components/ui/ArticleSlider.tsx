@@ -46,7 +46,7 @@ export function ArticleSlider({ articles }: { articles: SlideArticle[] }) {
           <p className="font-mono text-[10px] tracking-[0.12em] uppercase text-coral font-bold mb-2">{article.categoryName}</p>
         )}
         <h3 className="text-[19px] font-extrabold text-navy leading-[1.35] mb-2 group-hover:text-coral transition-colors">{article.title}</h3>
-        <p className="font-mono text-[11px] text-text-light mb-4">{article.authorName} · {article.date}</p>
+        <p className="text-xs text-text-light mb-4">{article.authorName} · {article.date}</p>
         <span className="font-mono text-[11px] tracking-[0.12em] uppercase text-coral font-bold">اقرأ المقال ←</span>
       </Link>
 

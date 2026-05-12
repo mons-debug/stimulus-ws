@@ -107,7 +107,7 @@ export default async function HomePage() {
       <section className="bg-navy text-white py-3 overflow-hidden border-t border-white/[0.08] relative">
         <div className="absolute right-0 top-0 bottom-0 flex items-center gap-2.5 px-4 lg:px-6 z-10 bg-navy border-l border-white/10">
           <span className="w-2 h-2 rounded-full bg-[#ff8e7a] animate-[sg-pulse-dot_1.6s_ease-out_infinite]" />
-          <span className="font-mono text-[10px] tracking-[0.14em] uppercase text-[#ff8e7a] font-bold whitespace-nowrap">عاجل</span>
+          <span className="text-[11px] tracking-wide text-[#ff8e7a] font-bold whitespace-nowrap">عاجل</span>
         </div>
         <div className="flex whitespace-nowrap">
           <div className="inline-flex gap-10 animate-[sg-marquee_35s_linear_infinite]">
@@ -261,13 +261,13 @@ export default async function HomePage() {
                 </div>
                 <div className="p-6">
                   {article.category && (
-                    <p className="font-mono text-[10px] tracking-[0.14em] uppercase text-coral font-bold mb-3">{article.category.name}</p>
+                    <p className="text-[11px] tracking-wide uppercase text-coral font-bold mb-3">{article.category.name}</p>
                   )}
                   <h3 className="text-lg lg:text-[21px] font-extrabold text-navy leading-snug mb-3 group-hover:text-coral transition-colors line-clamp-2">{article.title}</h3>
                   <p className="text-sm leading-relaxed text-text mb-4 line-clamp-2">{article.excerpt || ""}</p>
                   <div className="flex items-center justify-between pt-3.5 border-t border-rule">
-                    <span className="font-mono text-[11px] text-text-light">{article.publishedAt?.toLocaleDateString("ar-EG", { day: "numeric", month: "long", year: "numeric" })}</span>
-                    <span className="font-mono text-[11px] text-text-light">{article.author?.name || article.authorName}</span>
+                    <span className="text-xs text-text-light">{article.publishedAt?.toLocaleDateString("ar-EG", { day: "numeric", month: "long", year: "numeric" })}</span>
+                    <span className="text-xs text-text-light">{article.author?.name || article.authorName}</span>
                   </div>
                 </div>
               </Link>

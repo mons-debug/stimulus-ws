@@ -67,7 +67,7 @@ export default async function ArticlePage({ params }: Props) {
               <Link href={`/blog?author=${article.author?.slug || ""}`} className="block font-bold text-navy text-sm lg:text-base hover:text-coral transition-colors">
                 {article.author?.name || article.authorName}
               </Link>
-              <span className="font-mono text-[11px] text-text-light tracking-wide">
+              <span className="text-xs text-text-light">
                 {article.publishedAt?.toLocaleDateString("ar-EG", { day: "numeric", month: "long", year: "numeric" })}
                 {article.author?.bio && <> · {article.author.bio}</>}
               </span>

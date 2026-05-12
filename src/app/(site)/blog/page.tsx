@@ -153,8 +153,8 @@ export default async function BlogPage({ searchParams }: Props) {
                       <h3 className="text-[21px] font-extrabold text-navy leading-snug mb-3 group-hover:text-coral transition-colors line-clamp-2">{article.title}</h3>
                       <p className="text-sm leading-relaxed text-text mb-auto line-clamp-2">{article.excerpt || ""}</p>
                       <div className="flex items-center justify-between pt-4 border-t border-rule mt-4">
-                        <span className="font-mono text-[11px] text-text-light tracking-wide">{article.publishedAt?.toLocaleDateString("ar-EG", { day: "numeric", month: "long", year: "numeric" })}</span>
-                        <span className="font-mono text-[11px] text-text-light">{article.author?.name || article.authorName}</span>
+                        <span className="text-xs text-text-light">{article.publishedAt?.toLocaleDateString("ar-EG", { day: "numeric", month: "long", year: "numeric" })}</span>
+                        <span className="text-xs text-text-light">{article.author?.name || article.authorName}</span>
                       </div>
                     </div>
                   </Link>

@@ -53,6 +53,20 @@ body {
   font-weight: 600;
 }
 
+/* Metadata text — Arabic-safe small text */
+.sg-meta {
+  font-size: 12px;
+  color: var(--color-text-light);
+  line-height: 1.6;
+}
+
+/* Latin-only mono — use ONLY for English/numbers */
+.sg-mono-latin {
+  font-family: var(--font-mono);
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
 .sg-noise {
   position: absolute;
   inset: 0;
