@@ -122,7 +122,7 @@ export default async function AdminDashboard() {
                     {!c.read && <span className="font-mono text-[9px] tracking-[0.14em] uppercase bg-coral text-white px-2 py-0.5 font-bold">NEW</span>}
                   </div>
                   <p className="text-xs text-text truncate">{c.message}</p>
-                  <p className="font-mono text-[10px] text-text-light tracking-wide mt-1">{c.email} · {c.createdAt.toLocaleDateString("ar-EG", { month: "short", day: "numeric" })}</p>
+                  <p className="font-mono text-[10px] text-text-light tracking-wide mt-1">{c.email} · {c.createdAt.toLocaleDateString("ar-u-nu-latn", { month: "short", day: "numeric" })}</p>
                 </div>
               ))
             )}

@@ -107,7 +107,7 @@ export default function AboutPage() {
         <div className="max-w-[1280px] mx-auto px-4 lg:px-8">
           <span className="sg-kicker text-[#ff8e7a]">— VALUES · ميثاقنا</span>
           <h2 className="text-3xl lg:text-[56px] font-black text-white leading-[1.04] tracking-tight mt-3 mb-10">على ماذا لا نتنازل</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8">
             {VALUES.map((v) => (
               <div key={v.num} className="p-7 lg:p-8 bg-white/[0.04] border border-white/10">
                 <div className="font-mono text-[12px] tracking-[0.14em] text-[#ff8e7a] font-bold mb-4">{v.num}</div>

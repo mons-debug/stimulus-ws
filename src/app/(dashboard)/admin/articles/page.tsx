@@ -67,7 +67,7 @@ export default async function ArticlesPage({ searchParams }: Props) {
                     {a.published ? "PUB" : "DRAFT"}
                   </span>
                 </td>
-                <td className="py-4 px-5 font-mono text-xs text-text-light">{a.publishedAt?.toLocaleDateString("ar-EG", { year: "numeric", month: "short", day: "numeric" })}</td>
+                <td className="py-4 px-5 font-mono text-xs text-text-light">{a.publishedAt?.toLocaleDateString("ar-u-nu-latn", { year: "numeric", month: "short", day: "numeric" })}</td>
                 <td className="py-4 px-5">
                   <div className="flex gap-2">
                     <Link href={`/admin/articles/${a.id}`} className="text-coral text-xs font-bold hover:underline">تعديل</Link>
@@ -88,7 +88,7 @@ export default async function ArticlesPage({ searchParams }: Props) {
               <div className="flex-1 min-w-0">
                 {a.category && <span className="font-mono text-[9px] tracking-[0.14em] uppercase text-coral font-bold block mb-1">— {a.category.name}</span>}
                 <p className="font-bold text-navy text-sm leading-snug line-clamp-2">{a.title}</p>
-                <p className="text-[11px] text-text-light mt-1">{a.authorName} · {a.publishedAt?.toLocaleDateString("ar-EG", { month: "short", day: "numeric" })}</p>
+                <p className="text-[11px] text-text-light mt-1">{a.authorName} · {a.publishedAt?.toLocaleDateString("ar-u-nu-latn", { month: "short", day: "numeric" })}</p>
               </div>
               <span className={`flex-shrink-0 inline-flex items-center gap-1 px-2 py-0.5 font-mono text-[9px] tracking-[0.12em] uppercase font-bold ${a.published ? "bg-green-100/80 text-green-700" : "bg-gray-100 text-text-light"}`}>
                 <span className={`w-1 h-1 rounded-full ${a.published ? "bg-green-600" : "bg-gray-400"}`} />

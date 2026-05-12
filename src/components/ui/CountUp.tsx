@@ -2,9 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 
-export function CountUp({ target, suffix = "" }: { target: number; suffix?: string }) {
+export function CountUp({ target, suffix = "", className = "" }: { target: number; suffix?: string; className?: string }) {
   const [count, setCount] = useState(0);
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLSpanElement>(null);
   const started = useRef(false);
 
   useEffect(() => {
@@ -27,15 +27,15 @@ export function CountUp({ target, suffix = "" }: { target: number; suffix?: stri
           }, duration / steps);
         }
       },
-      { threshold: 0.5 }
+      { threshold: 0.3 }
     );
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, [target]);
 
   return (
-    <div ref={ref} className="text-4xl font-extrabold text-navy leading-none tracking-tight font-inter">
-      {count}{suffix}
-    </div>
+    <span ref={ref} className={className} style={{ fontVariantNumeric: "tabular-nums" }}>
+      {count.toLocaleString("en-US")}{suffix}
+    </span>
   );
 }

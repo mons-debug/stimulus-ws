@@ -22,7 +22,7 @@ export default async function HomePage() {
 
   const featured = articles[0];
   const secondary = articles.slice(1, 3);
-  const rest = articles.slice(1, 7);
+  const rest = articles.slice(1, 5);
 
   return (
     <>
@@ -96,7 +96,7 @@ export default async function HomePage() {
                 featuredImage: a.featuredImage,
                 categoryName: a.category?.name || null,
                 authorName: a.author?.name || a.authorName,
-                date: a.publishedAt?.toLocaleDateString("ar-EG", { day: "numeric", month: "long", year: "numeric" }) || "",
+                date: a.publishedAt?.toLocaleDateString("ar-u-nu-latn", { day: "numeric", month: "long", year: "numeric" }) || "",
               }))} />
             </aside>
             )}
@@ -113,7 +113,7 @@ export default async function HomePage() {
         <NewsTicker items={articles.slice(0, 5).map(a => ({
           title: a.title,
           slug: a.slug,
-          date: a.publishedAt?.toLocaleDateString("ar-EG", { month: "short", day: "numeric" }) || "",
+          date: a.publishedAt?.toLocaleDateString("ar-u-nu-latn", { month: "short", day: "numeric" }) || "",
         }))} />
       </section>
 
@@ -201,13 +201,13 @@ export default async function HomePage() {
       <section className="bg-coral text-white py-14 lg:py-16">
         <div className="max-w-[1280px] mx-auto px-4 lg:px-8 grid grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-8">
           {[
-            { num: `${articleCount}`, label: "بحثاً ودراسة منشورة" },
-            { num: "1K+", label: "مستفيد من برامج التدريب" },
-            { num: String(projects.length), label: "مشاريع نُفّذت" },
-            { num: "5", label: "شريك دولي ومحلي" },
+            { target: articleCount, suffix: "", label: "بحثاً ودراسة منشورة" },
+            { target: 1000, suffix: "+", label: "مستفيد من برامج التدريب" },
+            { target: projects.length, suffix: "", label: "مشاريع نُفّذت" },
+            { target: 5, suffix: "", label: "شريك دولي ومحلي" },
           ].map((s) => (
             <div key={s.label} className="border-b sm:border-b-0 lg:border-l border-white/20 pb-4 sm:pb-0 lg:pl-8 last:border-0 last:pb-0">
-              <div className="text-[40px] lg:text-[72px] font-black leading-none tracking-tight font-inter mb-1">{s.num}</div>
+              <CountUp target={s.target} suffix={s.suffix} className="text-[40px] lg:text-[72px] font-black leading-none tracking-tight font-inter block mb-1" />
               <div className="text-sm text-white/90 leading-relaxed">{s.label}</div>
             </div>
           ))}
@@ -235,7 +235,7 @@ export default async function HomePage() {
             ))}
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-7">
+          <div className="grid grid-cols-2 gap-4 lg:gap-6">
             {rest.length > 0 ? rest.map((article) => (
               <Link key={article.id} href={`/blog/${article.slug}`} className="group bg-white border border-rule hover:-translate-y-0.5 hover:shadow-[0_16px_36px_rgba(27,42,74,0.08)] transition-all">
                 <div className="relative aspect-[16/10] overflow-hidden">
@@ -252,7 +252,7 @@ export default async function HomePage() {
                   <h3 className="text-lg lg:text-[21px] font-extrabold text-navy leading-snug mb-3 group-hover:text-coral transition-colors line-clamp-2">{article.title}</h3>
                   <p className="text-sm leading-relaxed text-text mb-4 line-clamp-2">{article.excerpt || ""}</p>
                   <div className="flex items-center justify-between pt-3.5 border-t border-rule">
-                    <span className="text-xs text-text-light">{article.publishedAt?.toLocaleDateString("ar-EG", { day: "numeric", month: "long", year: "numeric" })}</span>
+                    <span className="text-xs text-text-light">{article.publishedAt?.toLocaleDateString("ar-u-nu-latn", { day: "numeric", month: "long", year: "numeric" })}</span>
                     <span className="text-xs text-text-light">{article.author?.name || article.authorName}</span>
                   </div>
                 </div>

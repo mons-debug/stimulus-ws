@@ -68,7 +68,7 @@ export default async function ArticlePage({ params }: Props) {
                 {article.author?.name || article.authorName}
               </Link>
               <span className="text-xs text-text-light">
-                {article.publishedAt?.toLocaleDateString("ar-EG", { day: "numeric", month: "long", year: "numeric" })}
+                {article.publishedAt?.toLocaleDateString("ar-u-nu-latn", { day: "numeric", month: "long", year: "numeric" })}
                 {article.author?.bio && <> · {article.author.bio}</>}
               </span>
             </div>
@@ -126,7 +126,7 @@ export default async function ArticlePage({ params }: Props) {
                           <div className="w-9 h-9 rounded-full bg-warm-gray flex items-center justify-center text-navy font-bold text-sm">{c.author.charAt(0)}</div>
                           <div>
                             <p className="font-bold text-navy text-sm">{c.author}</p>
-                            <p className="font-mono text-[10px] text-text-light tracking-wide">{c.createdAt.toLocaleDateString("ar-EG")}</p>
+                            <p className="font-mono text-[10px] text-text-light tracking-wide">{c.createdAt.toLocaleDateString("ar-u-nu-latn")}</p>
                           </div>
                         </div>
                         <p className="text-sm text-text leading-relaxed">{c.content}</p>
@@ -145,7 +145,7 @@ export default async function ArticlePage({ params }: Props) {
                   {recent.map((a) => (
                     <Link key={a.id} href={`/blog/${a.slug}`} className="block hover:bg-paper p-2 -m-2 transition-colors">
                       <p className="text-sm font-bold text-navy leading-snug mb-1">{a.title}</p>
-                      <p className="font-mono text-[10px] text-text-light tracking-wide">{a.publishedAt?.toLocaleDateString("ar-EG", { month: "long", day: "numeric" })}</p>
+                      <p className="font-mono text-[10px] text-text-light tracking-wide">{a.publishedAt?.toLocaleDateString("ar-u-nu-latn", { month: "long", day: "numeric" })}</p>
                     </Link>
                   ))}
                 </div>
@@ -184,7 +184,7 @@ export default async function ArticlePage({ params }: Props) {
                   )}
                   <h3 className="text-lg font-extrabold text-navy leading-snug mb-3 group-hover:text-coral transition-colors line-clamp-2">{a.title}</h3>
                   <div className="flex items-center justify-between pt-3.5 border-t border-rule mt-auto">
-                    <span className="font-mono text-[11px] text-text-light">{a.publishedAt?.toLocaleDateString("ar-EG", { day: "numeric", month: "long" })}</span>
+                    <span className="font-mono text-[11px] text-text-light">{a.publishedAt?.toLocaleDateString("ar-u-nu-latn", { day: "numeric", month: "long" })}</span>
                     <span className="font-mono text-[11px] text-text-light">{a.author?.name || a.authorName}</span>
                   </div>
                 </div>

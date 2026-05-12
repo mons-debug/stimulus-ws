@@ -84,7 +84,7 @@ export default async function BlogPage({ searchParams }: Props) {
                 )}
                 <div>
                   <b className="block text-sm lg:text-[15px] text-navy">{featured.author?.name || featured.authorName}</b>
-                  <span className="font-mono text-[11px] text-text-light tracking-wide">{featured.publishedAt?.toLocaleDateString("ar-EG", { day: "numeric", month: "long", year: "numeric" })}</span>
+                  <span className="font-mono text-[11px] text-text-light tracking-wide">{featured.publishedAt?.toLocaleDateString("ar-u-nu-latn", { day: "numeric", month: "long", year: "numeric" })}</span>
                 </div>
               </div>
             </div>
@@ -129,13 +129,13 @@ export default async function BlogPage({ searchParams }: Props) {
               <BlogViewToggle articles={gridArticles.map(a => ({
                 id: a.id, slug: a.slug, title: a.title, featuredImage: a.featuredImage,
                 authorName: a.authorName,
-                publishedAt: a.publishedAt?.toLocaleDateString("ar-EG", { month: "short", day: "numeric" }) || "",
+                publishedAt: a.publishedAt?.toLocaleDateString("ar-u-nu-latn", { month: "short", day: "numeric" }) || "",
                 categoryName: a.category?.name || null,
                 authorDisplayName: a.author?.name || a.authorName,
               }))} />
 
               {/* Desktop: card grid */}
-              <div className="hidden lg:grid grid-cols-3 gap-7">
+              <div className="hidden lg:grid grid-cols-3 gap-6">
                 {gridArticles.map((article) => (
                   <Link key={article.id} href={`/blog/${article.slug}`}
                     className="group bg-white border border-rule flex flex-col hover:-translate-y-0.5 hover:shadow-[0_16px_36px_rgba(27,42,74,0.08)] transition-all">
@@ -153,7 +153,7 @@ export default async function BlogPage({ searchParams }: Props) {
                       <h3 className="text-[21px] font-extrabold text-navy leading-snug mb-3 group-hover:text-coral transition-colors line-clamp-2">{article.title}</h3>
                       <p className="text-sm leading-relaxed text-text mb-auto line-clamp-2">{article.excerpt || ""}</p>
                       <div className="flex items-center justify-between pt-4 border-t border-rule mt-4">
-                        <span className="text-xs text-text-light">{article.publishedAt?.toLocaleDateString("ar-EG", { day: "numeric", month: "long", year: "numeric" })}</span>
+                        <span className="text-xs text-text-light">{article.publishedAt?.toLocaleDateString("ar-u-nu-latn", { day: "numeric", month: "long", year: "numeric" })}</span>
                         <span className="text-xs text-text-light">{article.author?.name || article.authorName}</span>
                       </div>
                     </div>
