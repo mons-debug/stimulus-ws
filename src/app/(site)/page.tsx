@@ -103,31 +103,30 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ===== TICKER ===== */}
-      <section className="bg-navy text-white py-3.5 overflow-hidden border-t border-white/[0.08]">
-        <div className="flex items-center">
-          <div className="flex-shrink-0 flex items-center gap-2.5 px-4 lg:px-8 z-10 bg-navy">
-            <span className="w-2 h-2 rounded-full bg-[#ff8e7a] animate-[sg-pulse-dot_1.6s_ease-out_infinite]" />
-            <span className="font-mono text-[11px] tracking-[0.14em] uppercase text-[#ff8e7a] font-bold whitespace-nowrap">آخر التحديثات</span>
-            <span className="w-px h-4 bg-white/20 mr-2" />
+      {/* ===== TICKER — news channel style ===== */}
+      <section className="bg-navy text-white py-3 overflow-hidden border-t border-white/[0.08] relative">
+        <div className="absolute right-0 top-0 bottom-0 flex items-center gap-2.5 px-4 lg:px-6 z-10 bg-navy border-l border-white/10">
+          <span className="w-2 h-2 rounded-full bg-[#ff8e7a] animate-[sg-pulse-dot_1.6s_ease-out_infinite]" />
+          <span className="font-mono text-[10px] tracking-[0.14em] uppercase text-[#ff8e7a] font-bold whitespace-nowrap">عاجل</span>
+        </div>
+        <div className="flex whitespace-nowrap">
+          <div className="inline-flex gap-10 animate-[sg-marquee_35s_linear_infinite]">
+            {articles.slice(0, 5).map((a) => (
+              <span key={a.id} className="text-[13px] text-white/80 inline-flex items-center gap-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#ff8e7a] flex-shrink-0" />
+                {a.title}
+                <span className="font-mono text-[10px] text-white/40 tracking-[0.06em]">{a.publishedAt?.toLocaleDateString("ar-EG", { month: "short", day: "numeric" })}</span>
+              </span>
+            ))}
           </div>
-          <div className="overflow-hidden flex-1">
-            <div className="inline-flex gap-16 animate-[sg-marquee_40s_linear_infinite] whitespace-nowrap">
-              {articles.slice(0, 5).map((a) => (
-                <span key={a.id} className="text-sm text-white/85 inline-flex items-center gap-2">
-                  {a.title}
-                  <span className="font-mono text-[11px] text-[#ff8e7a] tracking-[0.06em]">{a.publishedAt?.toLocaleDateString("ar-EG", { month: "short", day: "numeric" })}</span>
-                  <span className="w-1 h-1 rounded-full bg-white/30" />
-                </span>
-              ))}
-              {articles.slice(0, 5).map((a) => (
-                <span key={`dup-${a.id}`} className="text-sm text-white/85 inline-flex items-center gap-2">
-                  {a.title}
-                  <span className="font-mono text-[11px] text-[#ff8e7a] tracking-[0.06em]">{a.publishedAt?.toLocaleDateString("ar-EG", { month: "short", day: "numeric" })}</span>
-                  <span className="w-1 h-1 rounded-full bg-white/30" />
-                </span>
-              ))}
-            </div>
+          <div className="inline-flex gap-10 animate-[sg-marquee_35s_linear_infinite]">
+            {articles.slice(0, 5).map((a) => (
+              <span key={`dup-${a.id}`} className="text-[13px] text-white/80 inline-flex items-center gap-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#ff8e7a] flex-shrink-0" />
+                {a.title}
+                <span className="font-mono text-[10px] text-white/40 tracking-[0.06em]">{a.publishedAt?.toLocaleDateString("ar-EG", { month: "short", day: "numeric" })}</span>
+              </span>
+            ))}
           </div>
         </div>
       </section>
