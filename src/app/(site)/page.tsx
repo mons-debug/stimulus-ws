@@ -109,13 +109,22 @@ export default async function HomePage() {
           <span className="w-2 h-2 rounded-full bg-[#ff8e7a] animate-[sg-pulse-dot_1.6s_ease-out_infinite]" />
           <span className="text-[11px] tracking-wide text-[#ff8e7a] font-bold whitespace-nowrap">عاجل</span>
         </div>
-        <div className="overflow-hidden">
-          <div className="inline-flex gap-10 whitespace-nowrap animate-[sg-marquee_45s_linear_infinite]" style={{ width: "max-content" }}>
-            {[...articles.slice(0, 5), ...articles.slice(0, 5)].map((a, i) => (
-              <span key={`tick-${i}`} className="text-[13px] text-white/80 inline-flex items-center gap-3">
+        <div className="ticker-wrap overflow-hidden whitespace-nowrap">
+          <div className="ticker-move inline-block animate-[sg-marquee_30s_linear_infinite]">
+            {articles.slice(0, 5).map((a) => (
+              <span key={a.id} className="text-[13px] text-white/80 inline-flex items-center gap-3 mx-6">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#ff8e7a] flex-shrink-0" />
                 {a.title}
-                <span className="font-mono text-[10px] text-white/40 tracking-[0.06em]">{a.publishedAt?.toLocaleDateString("ar-EG", { month: "short", day: "numeric" })}</span>
+                <span className="font-mono text-[10px] text-white/40">{a.publishedAt?.toLocaleDateString("ar-EG", { month: "short", day: "numeric" })}</span>
+              </span>
+            ))}
+          </div>
+          <div className="ticker-move inline-block animate-[sg-marquee_30s_linear_infinite]">
+            {articles.slice(0, 5).map((a) => (
+              <span key={`d-${a.id}`} className="text-[13px] text-white/80 inline-flex items-center gap-3 mx-6">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#ff8e7a] flex-shrink-0" />
+                {a.title}
+                <span className="font-mono text-[10px] text-white/40">{a.publishedAt?.toLocaleDateString("ar-EG", { month: "short", day: "numeric" })}</span>
               </span>
             ))}
           </div>
