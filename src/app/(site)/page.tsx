@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { prisma } from "@/lib/db";
+import { CountUp } from "@/components/ui/CountUp";
+import { ArticleSlider } from "@/components/ui/ArticleSlider";
 
 export const revalidate = 60;
 
@@ -32,15 +34,15 @@ export default async function HomePage() {
             {/* MASTHEAD RAIL — stats */}
             <aside className="hidden lg:block border-l border-rule pl-8">
               <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-coral font-bold mb-6">VOL. 06 · ISSUE 24 · MAY 2026</p>
-              <h4 className="font-mono text-[10px] tracking-[0.14em] uppercase text-text-light font-semibold mb-3">منذ التأسيس</h4>
+              <h4 className="font-mono text-[10px] tracking-[0.14em] uppercase text-text-light font-semibold mb-3">SINCE FOUNDING · منذ التأسيس</h4>
               {[
-                { num: String(articleCount), label: "بحث ودراسة منشورة" },
-                { num: String(projects.length), label: "مشروع نشط" },
-                { num: "1000+", label: "مستفيد من برامج التدريب" },
-                { num: "5", label: "شريك دولي ومحلي" },
+                { target: articleCount, suffix: "", label: "بحث ودراسة منشورة" },
+                { target: projects.length, suffix: "", label: "مشروع نشط" },
+                { target: 1000, suffix: "+", label: "مستفيد من برامج التدريب" },
+                { target: 5, suffix: "", label: "شريك دولي ومحلي" },
               ].map((s) => (
                 <div key={s.label} className="py-4 border-t border-rule">
-                  <div className="text-4xl font-extrabold text-navy leading-none tracking-tight font-inter">{s.num}</div>
+                  <CountUp target={s.target} suffix={s.suffix} />
                   <div className="text-[13px] text-text mt-1.5">{s.label}</div>
                 </div>
               ))}
@@ -53,8 +55,8 @@ export default async function HomePage() {
                 <span className="w-9 h-0.5 bg-coral" />
                 <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-coral font-bold">A EUROPEAN NPO · بيت فكر مستقل</span>
               </div>
-              <h1 className="text-[42px] sm:text-[64px] lg:text-[88px] leading-[0.95] font-black text-navy tracking-tight mb-6 lg:mb-7 sg-rise sg-rise-d1">
-                نُنتج <span className="relative inline-block">المعرفة<span className="absolute left-0 right-0 bottom-1 lg:bottom-2 h-3 lg:h-3.5 bg-coral/[0.18] -z-10" /></span><br />
+              <h1 className="text-[38px] sm:text-[58px] lg:text-[82px] leading-[1.15] font-black text-navy tracking-[-0.02em] mb-6 lg:mb-7 sg-rise sg-rise-d1">
+                نُنتج <span className="relative inline-block">المعرفة<span className="absolute left-0 right-0 bottom-2 lg:bottom-3 h-2.5 lg:h-3 bg-coral/[0.18] -z-10" /></span><br />
                 ونصنع <span className="text-coral">الحوار</span><br />
                 ونبني الجيل القادم.
               </h1>
@@ -84,23 +86,17 @@ export default async function HomePage() {
               </div>
             </div>
 
-            {/* FEATURED ARTICLE — right rail */}
-            {featured && (
+            {/* FEATURED ARTICLE — sliding carousel */}
+            {articles.length > 0 && (
             <aside className="hidden lg:block border-r border-rule pr-7">
-              <p className="font-mono text-[10px] tracking-[0.14em] uppercase text-text-light font-semibold mb-4">مقال محرّر العدد</p>
-              <Link href={`/blog/${featured.slug}`} className="group block">
-                <div className="relative h-40 mb-4 overflow-hidden bg-warm-gray">
-                  {featured.featuredImage && (
-                    <Image src={featured.featuredImage} alt={featured.title} fill className="object-cover object-[70%_top] group-hover:scale-105 transition-transform duration-500" />
-                  )}
-                </div>
-                {featured.category && (
-                  <p className="font-mono text-[10px] tracking-[0.12em] uppercase text-coral font-bold mb-2">{featured.category.name}</p>
-                )}
-                <h3 className="text-[21px] font-extrabold text-navy leading-snug mb-2 group-hover:text-coral transition-colors">{featured.title}</h3>
-                <p className="font-mono text-[11px] text-text-light mb-4">{featured.author?.name || featured.authorName} · {featured.publishedAt?.toLocaleDateString("ar-EG", { day: "numeric", month: "long", year: "numeric" })}</p>
-                <span className="font-mono text-[11px] tracking-[0.12em] uppercase text-coral font-bold">اقرأ المقال ←</span>
-              </Link>
+              <ArticleSlider articles={articles.slice(0, 4).map(a => ({
+                slug: a.slug,
+                title: a.title,
+                featuredImage: a.featuredImage,
+                categoryName: a.category?.name || null,
+                authorName: a.author?.name || a.authorName,
+                date: a.publishedAt?.toLocaleDateString("ar-EG", { day: "numeric", month: "long", year: "numeric" }) || "",
+              }))} />
             </aside>
             )}
           </div>
