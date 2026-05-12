@@ -26,7 +26,7 @@ export default async function HomePage() {
   return (
     <>
       {/* ===== HERO — Editorial masthead ===== */}
-      <section className="relative bg-paper overflow-hidden pt-24 lg:pt-32 pb-12 lg:pb-20">
+      <section className="relative bg-paper overflow-hidden pt-8 lg:pt-14 pb-10 lg:pb-16">
         <div className="sg-noise" />
         <div className="relative max-w-[1280px] mx-auto px-4 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr_260px] gap-8 lg:gap-14">
@@ -152,7 +152,7 @@ export default async function HomePage() {
                 <div className="font-mono text-[11px] tracking-[0.14em] text-coral font-bold mb-8">{p.num}</div>
                 <h3 className="text-xl lg:text-[28px] font-extrabold text-navy leading-snug mb-3">{p.title}</h3>
                 <p className="text-sm leading-relaxed text-text mb-auto">{p.desc}</p>
-                <div className="mt-6 font-mono text-[10px] tracking-[0.12em] uppercase text-coral font-bold">{p.stat} ←</div>
+                <div className="mt-6 text-xs text-coral font-bold">{p.stat} ←</div>
               </Link>
             ))}
           </div>
@@ -168,7 +168,7 @@ export default async function HomePage() {
             المعرفة <span className="text-[#ff8e7a]">ليست ترفاً</span>. هي شرط أوّلي
             لأي مجتمع يطمح إلى <span className="text-[#ff8e7a]">اختياراته الخاصة</span>.
           </blockquote>
-          <cite className="not-italic block mt-9 text-sm font-mono tracking-[0.08em] text-white/60 uppercase">— ميثاق منظمة مجموعات التحفيز</cite>
+          <cite className="not-italic block mt-9 text-sm text-white/60">— ميثاق منظمة مجموعات التحفيز</cite>
         </div>
       </section>
 
