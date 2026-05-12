@@ -97,30 +97,35 @@ export function Header() {
       </div>
     </header>
 
-    {/* MOBILE OVERLAY */}
-    {mobileOpen && (
-      <div className="lg:hidden fixed inset-0 z-[60] animate-[fadeIn_200ms_ease-out]">
-        <div className="absolute inset-0 bg-navy/95 backdrop-blur-md" onClick={toggleMenu} />
-        <button onClick={toggleMenu} className="absolute top-6 left-6 z-10 text-white/70 hover:text-white transition-colors">
-          <X size={28} />
-        </button>
-        <div className="relative flex flex-col items-center justify-center h-full animate-[scaleIn_250ms_ease-out]">
-          <div className="mb-8">
-            <Image src="/logo-icon.png" alt="" width={50} height={50} className="w-12 h-12 mx-auto mb-2" />
-            <p className="font-mono text-[10px] tracking-[0.14em] uppercase text-white/50 text-center">STIMULUS GROUPS</p>
-          </div>
-          <nav className="flex flex-col items-center gap-0.5 mb-8">
-            {NAV_LINKS.map((link) => (
-              <Link key={link.href} href={link.href} onClick={toggleMenu}
-                className={`text-lg font-bold py-2 px-8 transition-all ${pathname === link.href ? "text-coral" : "text-white hover:text-coral"}`}>
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-          <Link href="/donate" onClick={toggleMenu} className="bg-coral text-white font-bold px-8 py-3 text-sm">تبرّع الآن ←</Link>
+    {/* MOBILE DRAWER — slides from right (RTL) */}
+    <div className={`lg:hidden fixed inset-0 z-[60] ${mobileOpen ? "pointer-events-auto" : "pointer-events-none"}`}>
+      <div className={`absolute inset-0 bg-navy/60 transition-opacity duration-200 ${mobileOpen ? "opacity-100" : "opacity-0"}`} onClick={toggleMenu} />
+      <div className={`absolute top-0 bottom-0 right-0 w-[min(86%,360px)] bg-paper flex flex-col transition-transform duration-250 ease-out ${mobileOpen ? "translate-x-0" : "translate-x-full"}`}>
+        <div className="flex items-center justify-between p-5 border-b border-rule">
+          <span className="text-[17px] font-extrabold text-navy">مجموعات التحفيز</span>
+          <button onClick={toggleMenu} className="w-10 h-10 flex items-center justify-center">
+            <X size={20} className="text-navy" />
+          </button>
+        </div>
+        <nav className="flex-1 p-3 flex flex-col gap-0.5 overflow-y-auto">
+          {NAV_LINKS.map((link, i) => (
+            <Link key={link.href} href={link.href} onClick={toggleMenu}
+              className={`flex items-center justify-between px-3.5 py-3.5 text-base font-semibold transition-colors ${pathname === link.href ? "text-coral bg-coral/[0.06]" : "text-ink hover:bg-warm-gray"}`}>
+              {link.label}
+              <span className="font-mono text-[10px] text-text-light tracking-[0.1em]">{String(i + 1).padStart(2, "0")}</span>
+            </Link>
+          ))}
+        </nav>
+        <div className="p-5 border-t border-rule flex flex-col gap-2.5">
+          <Link href="/donate" onClick={toggleMenu} className="bg-coral text-white font-semibold py-3 text-sm text-center w-full flex items-center justify-center gap-2">
+            تبرّع
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M12 5l-7 7 7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>
+          </Link>
+          <Link href="/contact" onClick={toggleMenu} className="border border-navy text-navy font-semibold py-3 text-sm text-center w-full">تواصل معنا</Link>
+          <p className="font-mono text-[10px] tracking-[0.12em] text-text-light text-center mt-2">NPO #80618910 · ESTONIA</p>
         </div>
       </div>
-    )}
+    </div>
     </>
   );
 }
