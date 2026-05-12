@@ -109,18 +109,18 @@ export default async function HomePage() {
           <span className="w-2 h-2 rounded-full bg-[#ff8e7a] animate-[sg-pulse-dot_1.6s_ease-out_infinite]" />
           <span className="text-[11px] tracking-wide text-[#ff8e7a] font-bold whitespace-nowrap">عاجل</span>
         </div>
-        <div className="flex overflow-hidden whitespace-nowrap">
-          {[0, 1].map((copy) => (
-            <div key={copy} className="flex-shrink-0 flex items-center gap-8 animate-[sg-marquee_40s_linear_infinite] min-w-full">
-              {articles.slice(0, 5).map((a, i) => (
-                <span key={`${copy}-${i}`} className="text-[13px] text-white/80 inline-flex items-center gap-3 flex-shrink-0">
+        <div className="overflow-hidden whitespace-nowrap">
+          <div className="inline-flex items-center animate-[sg-marquee_30s_linear_infinite]">
+            {[0, 1].map((copy) =>
+              articles.slice(0, 5).map((a, i) => (
+                <span key={`${copy}-${i}`} className="text-[13px] text-white/80 inline-flex items-center gap-3 flex-shrink-0 pl-10">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#ff8e7a] flex-shrink-0" />
                   {a.title}
                   <span className="font-mono text-[10px] text-white/40">{a.publishedAt?.toLocaleDateString("ar-EG", { month: "short", day: "numeric" })}</span>
                 </span>
-              ))}
-            </div>
-          ))}
+              ))
+            )}
+          </div>
         </div>
       </section>
 
