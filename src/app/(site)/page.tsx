@@ -3,6 +3,7 @@ import Image from "next/image";
 import { prisma } from "@/lib/db";
 import { CountUp } from "@/components/ui/CountUp";
 import { ArticleSlider } from "@/components/ui/ArticleSlider";
+import { NewsTicker } from "@/components/ui/NewsTicker";
 
 export const revalidate = 60;
 
@@ -103,25 +104,16 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ===== TICKER — seamless news loop ===== */}
-      <section className="bg-navy text-white py-3 overflow-hidden border-t border-white/[0.08] relative">
+      {/* ===== TICKER ===== */}
+      <section className="bg-navy text-white py-3 border-t border-white/[0.08] relative">
         <div className="absolute right-0 top-0 bottom-0 flex items-center gap-2.5 px-4 lg:px-6 z-10 bg-navy border-l border-white/10">
           <span className="w-2 h-2 rounded-full bg-[#ff8e7a] animate-[sg-pulse-dot_1.6s_ease-out_infinite]" />
           <span className="text-[11px] tracking-wide text-[#ff8e7a] font-bold whitespace-nowrap">عاجل</span>
         </div>
-        <div className="overflow-hidden whitespace-nowrap">
-          <div className="inline-flex items-center animate-[sg-marquee_60s_linear_infinite]">
-            {[0, 1, 2, 3].map((copy) =>
-              articles.slice(0, 5).map((a, i) => (
-                <span key={`${copy}-${i}`} className="text-[13px] text-white/80 inline-flex items-center gap-3 flex-shrink-0 pl-12">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#ff8e7a] flex-shrink-0" />
-                  {a.title}
-                  <span className="font-mono text-[10px] text-white/40">{a.publishedAt?.toLocaleDateString("ar-EG", { month: "short", day: "numeric" })}</span>
-                </span>
-              ))
-            )}
-          </div>
-        </div>
+        <NewsTicker items={articles.slice(0, 5).map(a => ({
+          title: a.title,
+          date: a.publishedAt?.toLocaleDateString("ar-EG", { month: "short", day: "numeric" }) || "",
+        }))} />
       </section>
 
       {/* ===== PROJECTS (moved here — right under hero) ===== */}
