@@ -23,7 +23,7 @@ export default async function ProjectPage({ params }: Props) {
   return (
     <>
       <section className="relative bg-navy overflow-hidden py-10 lg:py-16"><div className="absolute inset-0 bg-[radial-gradient(rgb(255_255_255_/_0.3)_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_50%,black_30%,transparent_100%)]" />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-8">
+        <div className="relative max-w-[1280px] mx-auto px-4 lg:px-8 text-center pt-8">
           <h1 className="text-3xl sm:text-4xl font-bold text-white mb-4">{project.title}</h1>
           <div className="flex items-center justify-center gap-2 text-white/60 text-sm">
             <Link href="/" className="hover:text-white">الرئيسية</Link>
@@ -34,7 +34,7 @@ export default async function ProjectPage({ params }: Props) {
       </section>
 
       <section className="py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto px-4 lg:px-8">
           {/* Partner logos boxes */}
           {project.partnerLogos && project.partnerLogos.length > 0 && (
             <div className="flex items-center justify-center gap-6 mb-12 flex-wrap">

@@ -19,7 +19,7 @@ export default async function PartnersPage() {
     <>
       <section className="relative bg-navy overflow-hidden py-10 lg:py-16">
         <div className="absolute inset-0 bg-[radial-gradient(rgb(255_255_255_/_0.3)_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_50%,black_30%,transparent_100%)]" />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-8">
+        <div className="relative max-w-[1280px] mx-auto px-4 lg:px-8 text-center pt-8">
           <h1 className="text-3xl lg:text-4xl font-extrabold text-white mb-4">شركاؤنا: تحقيق التغيير معًا</h1>
           <div className="flex items-center justify-center gap-2 text-white/60 text-sm">
             <Link href="/" className="hover:text-white">الرئيسية</Link>
@@ -30,7 +30,7 @@ export default async function PartnersPage() {
       </section>
 
       <section className="py-10 lg:py-16 bg-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto px-4 lg:px-8">
           <h2 className="text-sm lg:text-xl font-bold text-coral text-center mb-8 lg:mb-12 leading-relaxed">
             تتشارك &quot;منظمة مجموعات التحفيز&quot; وتتعاون في تنفيذ مشروعاتها وتحقيق أهدافها مع العديد من المنظمات الدولية ومن بينهم:
           </h2>

@@ -7,7 +7,7 @@ export default function DonatePage() {
   return (
     <>
       <section className="relative bg-navy overflow-hidden py-10 lg:py-16"><div className="absolute inset-0 bg-[radial-gradient(rgb(255_255_255_/_0.3)_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_50%,black_30%,transparent_100%)]" />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-8">
+        <div className="relative max-w-[1280px] mx-auto px-4 lg:px-8 text-center pt-8">
           <h1 className="text-3xl lg:text-4xl font-extrabold text-white mb-4">تبرع معنا الآن</h1>
           <div className="flex items-center justify-center gap-2 text-white/60 text-sm">
             <Link href="/" className="hover:text-white">الرئيسية</Link>
@@ -17,7 +17,7 @@ export default function DonatePage() {
       </section>
 
       <section className="py-20 bg-white">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-w-3xl mx-auto px-4 lg:px-8 text-center">
           <h2 className="text-3xl font-extrabold text-navy mb-4">ساهم في تحقيق التغيير الإيجابي</h2>
           <p className="text-xl text-navy/70 mb-6">اجعل تبرعك وتطوعك الآن فرصة للأمل والتغيير</p>
           <p className="text-text-light leading-relaxed mb-10">
