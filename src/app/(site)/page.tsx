@@ -11,7 +11,7 @@ export default async function HomePage() {
     prisma.article.findMany({
       where: { published: true },
       orderBy: { publishedAt: "desc" },
-      take: 7,
+      take: 10,
       include: { category: true, author: true },
     }),
     prisma.project.findMany({ orderBy: { sortOrder: "asc" }, take: 3 }),
@@ -21,7 +21,7 @@ export default async function HomePage() {
 
   const featured = articles[0];
   const secondary = articles.slice(1, 3);
-  const rest = articles.slice(3, 7);
+  const rest = articles.slice(1, 7);
 
   return (
     <>
@@ -109,25 +109,18 @@ export default async function HomePage() {
           <span className="w-2 h-2 rounded-full bg-[#ff8e7a] animate-[sg-pulse-dot_1.6s_ease-out_infinite]" />
           <span className="text-[11px] tracking-wide text-[#ff8e7a] font-bold whitespace-nowrap">عاجل</span>
         </div>
-        <div className="ticker-wrap overflow-hidden whitespace-nowrap">
-          <div className="ticker-move inline-block animate-[sg-marquee_30s_linear_infinite]">
-            {articles.slice(0, 5).map((a) => (
-              <span key={a.id} className="text-[13px] text-white/80 inline-flex items-center gap-3 mx-6">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#ff8e7a] flex-shrink-0" />
-                {a.title}
-                <span className="font-mono text-[10px] text-white/40">{a.publishedAt?.toLocaleDateString("ar-EG", { month: "short", day: "numeric" })}</span>
-              </span>
-            ))}
-          </div>
-          <div className="ticker-move inline-block animate-[sg-marquee_30s_linear_infinite]">
-            {articles.slice(0, 5).map((a) => (
-              <span key={`d-${a.id}`} className="text-[13px] text-white/80 inline-flex items-center gap-3 mx-6">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#ff8e7a] flex-shrink-0" />
-                {a.title}
-                <span className="font-mono text-[10px] text-white/40">{a.publishedAt?.toLocaleDateString("ar-EG", { month: "short", day: "numeric" })}</span>
-              </span>
-            ))}
-          </div>
+        <div className="flex overflow-hidden whitespace-nowrap">
+          {[0, 1].map((copy) => (
+            <div key={copy} className="flex-shrink-0 flex items-center gap-8 animate-[sg-marquee_40s_linear_infinite] min-w-full">
+              {articles.slice(0, 5).map((a, i) => (
+                <span key={`${copy}-${i}`} className="text-[13px] text-white/80 inline-flex items-center gap-3 flex-shrink-0">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#ff8e7a] flex-shrink-0" />
+                  {a.title}
+                  <span className="font-mono text-[10px] text-white/40">{a.publishedAt?.toLocaleDateString("ar-EG", { month: "short", day: "numeric" })}</span>
+                </span>
+              ))}
+            </div>
+          ))}
         </div>
       </section>
 
