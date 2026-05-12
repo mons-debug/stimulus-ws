@@ -235,6 +235,12 @@ body {
   z-index: 2;
 }
 
+/* Grid overflow prevention */
+[class*="grid-cols"] > * { min-width: 0; }
+
+/* Safe area for bottom app bar */
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom, 0); }
+
 /* ===== MOBILE RESPONSIVE (from Claude Design spec) ===== */
 @media (max-width: 640px) {
   /* Buttons — 44px min touch target */

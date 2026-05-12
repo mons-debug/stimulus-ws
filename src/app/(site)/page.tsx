@@ -128,10 +128,10 @@ export default async function HomePage() {
             </div>
             <Link href="/projects" className="hidden lg:inline-flex items-center gap-2 text-coral font-bold text-sm hover:underline">جميع المشاريع ({projects.length}) ←</Link>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6">
+          <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-2 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:snap-none md:pb-0">
             {projects.map((project) => (
               <Link key={project.id} href={`/projects/${project.slug}`}
-                className="group bg-white border border-rule flex flex-col hover:-translate-y-0.5 hover:shadow-[0_16px_36px_rgba(27,42,74,0.1)] transition-all">
+                className="group bg-white border border-rule flex flex-col hover:-translate-y-0.5 hover:shadow-[0_16px_36px_rgba(27,42,74,0.1)] transition-all flex-shrink-0 w-[78%] md:w-auto snap-start">
                 <div className="relative aspect-[16/10] overflow-hidden bg-warm-gray">
                   {project.featuredImage ? (
                     <Image src={project.featuredImage} alt={project.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
@@ -164,7 +164,7 @@ export default async function HomePage() {
             </div>
             <Link href="/services" className="hidden lg:inline-flex items-center gap-2 text-coral font-bold text-sm hover:underline">جميع البرامج ←</Link>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 border-t border-rule border-r border-rule">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-0 border-t border-rule border-r border-rule">
             {[
               { num: "٠١ / البحث", title: "البحوث والدراسات", desc: "إنتاج أبحاث تطبيقية ودراسات سياسات عامة في الاقتصاد والحوكمة والتنمية المحلية.", stat: `${articleCount} دراسة منشورة` },
               { num: "٠٢ / الحوار", title: "الحوار والنقاش العام", desc: "تنظيم منصات حوارية وموائد مستديرة تجمع الأكاديميين وصنّاع القرار والمجتمع المدني.", stat: "ندوات ومؤتمرات" },
@@ -199,7 +199,7 @@ export default async function HomePage() {
 
       {/* ===== IMPACT BAND ===== */}
       <section className="bg-coral text-white py-14 lg:py-16">
-        <div className="max-w-[1280px] mx-auto px-4 lg:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-8">
+        <div className="max-w-[1280px] mx-auto px-4 lg:px-8 grid grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-8">
           {[
             { num: `${articleCount}`, label: "بحثاً ودراسة منشورة" },
             { num: "1K+", label: "مستفيد من برامج التدريب" },
@@ -235,7 +235,7 @@ export default async function HomePage() {
             ))}
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-7">
             {rest.length > 0 ? rest.map((article) => (
               <Link key={article.id} href={`/blog/${article.slug}`} className="group bg-white border border-rule hover:-translate-y-0.5 hover:shadow-[0_16px_36px_rgba(27,42,74,0.08)] transition-all">
                 <div className="relative aspect-[16/10] overflow-hidden">
@@ -275,7 +275,7 @@ export default async function HomePage() {
             <span className="sg-kicker">— GET INVOLVED · انضم إلينا</span>
             <h2 className="text-3xl lg:text-[56px] font-black text-navy leading-[1.15] tracking-tight mt-3">ثلاث طرق لدعم العمل</h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-0 border-t border-rule border-r border-rule">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-0 border-t border-rule lg:border-r border-rule">
             {[
               { num: "۰۱", title: "تبرّع", desc: "تبرعك يموّل بحثاً مستقلاً ومحايداً ويُتيحه مجاناً للجميع.", href: "/donate", btn: "تبرع الآن ←", style: "bg-coral text-white" },
               { num: "۰۲", title: "تطوّع", desc: "سواء كنت باحثاً، مصمماً، أو محرراً — فريقنا يفتح أبوابه.", href: "/contact", btn: "قدّم طلباً ←", style: "border border-navy text-navy" },
