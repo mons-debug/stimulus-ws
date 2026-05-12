@@ -105,23 +105,26 @@ export default async function HomePage() {
 
       {/* ===== TICKER ===== */}
       <section className="bg-navy text-white py-3.5 overflow-hidden border-t border-white/[0.08]">
-        <div className="max-w-[1280px] mx-auto px-4 lg:px-8 grid grid-cols-[auto_1fr] gap-6 items-center">
-          <div className="flex items-center gap-2.5">
+        <div className="flex items-center">
+          <div className="flex-shrink-0 flex items-center gap-2.5 px-4 lg:px-8 z-10 bg-navy">
             <span className="w-2 h-2 rounded-full bg-[#ff8e7a] animate-[sg-pulse-dot_1.6s_ease-out_infinite]" />
             <span className="font-mono text-[11px] tracking-[0.14em] uppercase text-[#ff8e7a] font-bold whitespace-nowrap">آخر التحديثات</span>
+            <span className="w-px h-4 bg-white/20 mr-2" />
           </div>
-          <div className="overflow-hidden whitespace-nowrap">
-            <div className="inline-flex gap-12 animate-[sg-marquee_50s_linear_infinite]">
+          <div className="overflow-hidden flex-1">
+            <div className="inline-flex gap-16 animate-[sg-marquee_40s_linear_infinite] whitespace-nowrap">
               {articles.slice(0, 5).map((a) => (
-                <span key={a.id} className="text-sm text-white/85">
+                <span key={a.id} className="text-sm text-white/85 inline-flex items-center gap-2">
                   {a.title}
-                  <span className="font-mono text-[11px] text-[#ff8e7a] mr-2.5 tracking-[0.06em]">{a.publishedAt?.toLocaleDateString("ar-EG", { month: "short", day: "numeric" })}</span>
+                  <span className="font-mono text-[11px] text-[#ff8e7a] tracking-[0.06em]">{a.publishedAt?.toLocaleDateString("ar-EG", { month: "short", day: "numeric" })}</span>
+                  <span className="w-1 h-1 rounded-full bg-white/30" />
                 </span>
               ))}
               {articles.slice(0, 5).map((a) => (
-                <span key={`dup-${a.id}`} className="text-sm text-white/85">
+                <span key={`dup-${a.id}`} className="text-sm text-white/85 inline-flex items-center gap-2">
                   {a.title}
-                  <span className="font-mono text-[11px] text-[#ff8e7a] mr-2.5 tracking-[0.06em]">{a.publishedAt?.toLocaleDateString("ar-EG", { month: "short", day: "numeric" })}</span>
+                  <span className="font-mono text-[11px] text-[#ff8e7a] tracking-[0.06em]">{a.publishedAt?.toLocaleDateString("ar-EG", { month: "short", day: "numeric" })}</span>
+                  <span className="w-1 h-1 rounded-full bg-white/30" />
                 </span>
               ))}
             </div>
@@ -135,7 +138,7 @@ export default async function HomePage() {
           <div className="flex items-end justify-between mb-8 lg:mb-10">
             <div>
               <span className="sg-kicker">— OUR PROGRAMS · ٤ محاور</span>
-              <h2 className="text-3xl lg:text-[56px] font-black text-navy leading-[1.04] tracking-tight mt-3">المحاور الأربعة</h2>
+              <h2 className="text-3xl lg:text-[56px] font-black text-navy leading-[1.15] tracking-tight mt-3">المحاور الأربعة</h2>
             </div>
             <Link href="/services" className="hidden lg:inline-flex items-center gap-2 text-coral font-bold text-sm hover:underline">جميع البرامج ←</Link>
           </div>
@@ -162,7 +165,7 @@ export default async function HomePage() {
         <div className="absolute top-[-40px] right-16 font-serif text-[280px] lg:text-[360px] leading-none text-white/[0.04] select-none">"</div>
         <div className="relative max-w-[1280px] mx-auto px-4 lg:px-8">
           <span className="sg-kicker text-[#ff8e7a]">— MANIFESTO · ما نُؤمن به</span>
-          <blockquote className="text-3xl sm:text-[42px] lg:text-[60px] leading-[1.2] font-bold tracking-tight mt-7 max-w-[22ch]">
+          <blockquote className="text-3xl sm:text-[42px] lg:text-[56px] leading-[1.4] font-bold tracking-[-0.01em] mt-7 max-w-[24ch]">
             المعرفة <span className="text-[#ff8e7a]">ليست ترفاً</span>. هي شرط أوّلي
             لأي مجتمع يطمح إلى <span className="text-[#ff8e7a]">اختياراته الخاصة</span>.
           </blockquote>
@@ -177,7 +180,7 @@ export default async function HomePage() {
           <div className="flex items-end justify-between mb-10 lg:mb-12">
             <div>
               <span className="sg-kicker">— FEATURED PROJECTS · مشاريع</span>
-              <h2 className="text-3xl lg:text-[56px] font-black text-navy leading-[1.04] tracking-tight mt-3">من المشاريع الجارية</h2>
+              <h2 className="text-3xl lg:text-[56px] font-black text-navy leading-[1.15] tracking-tight mt-3">من المشاريع الجارية</h2>
             </div>
             <Link href="/projects" className="hidden lg:inline-flex items-center gap-2 text-coral font-bold text-sm hover:underline">جميع المشاريع ({projects.length}) ←</Link>
           </div>
@@ -232,7 +235,7 @@ export default async function HomePage() {
           <div className="flex items-end justify-between mb-10 lg:mb-12">
             <div>
               <span className="sg-kicker">— FROM THE BLOG · مقالات حديثة</span>
-              <h2 className="text-3xl lg:text-[56px] font-black text-navy leading-[1.04] tracking-tight mt-3">من المدوّنة</h2>
+              <h2 className="text-3xl lg:text-[56px] font-black text-navy leading-[1.15] tracking-tight mt-3">من المدوّنة</h2>
             </div>
             <Link href="/blog" className="hidden lg:inline-flex items-center gap-2 text-coral font-bold text-sm hover:underline">جميع المقالات ({articleCount}) ←</Link>
           </div>
@@ -285,7 +288,7 @@ export default async function HomePage() {
         <div className="max-w-[1280px] mx-auto px-4 lg:px-8">
           <div className="mb-10">
             <span className="sg-kicker">— GET INVOLVED · انضم إلينا</span>
-            <h2 className="text-3xl lg:text-[56px] font-black text-navy leading-[1.04] tracking-tight mt-3">ثلاث طرق لدعم العمل</h2>
+            <h2 className="text-3xl lg:text-[56px] font-black text-navy leading-[1.15] tracking-tight mt-3">ثلاث طرق لدعم العمل</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-0 border-t border-rule border-r border-rule">
             {[
