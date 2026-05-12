@@ -32,7 +32,7 @@ export default async function HomePage() {
         <div className="relative max-w-[1280px] mx-auto px-4 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr_260px] gap-6 lg:gap-12">
 
-            {/* MASTHEAD RAIL — stats */}
+            {/* MASTHEAD RAIL — desktop only */}
             <aside className="hidden lg:block border-l border-rule pl-8">
               <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-coral font-bold mb-6">VOL. 06 · ISSUE 24 · MAY 2026</p>
               <h4 className="font-mono text-[10px] tracking-[0.14em] uppercase text-text-light font-semibold mb-3">SINCE FOUNDING · منذ التأسيس</h4>
@@ -56,7 +56,7 @@ export default async function HomePage() {
                 <span className="w-9 h-0.5 bg-coral" />
                 <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-coral font-bold">A EUROPEAN NPO · بيت فكر مستقل</span>
               </div>
-              <h1 className="text-[34px] sm:text-[52px] lg:text-[76px] leading-[1.15] font-black text-navy tracking-[-0.02em] mb-4 lg:mb-5 sg-rise sg-rise-d1">
+              <h1 className="text-[32px] sm:text-[44px] lg:text-[76px] leading-[1.08] lg:leading-[1.15] font-black text-navy tracking-[-0.02em] mb-4 lg:mb-5 sg-rise sg-rise-d1">
                 نُنتج <span className="relative inline-block">المعرفة<span className="absolute left-0 right-0 bottom-2 lg:bottom-3 h-2.5 lg:h-3 bg-coral/[0.18] -z-10" /></span><br />
                 ونصنع <span className="text-coral">الحوار</span><br />
                 ونبني الجيل القادم.
@@ -118,7 +118,7 @@ export default async function HomePage() {
 
       {/* ===== PROJECTS (moved here — right under hero) ===== */}
       {projects.length > 0 && (
-      <section className="py-12 lg:py-20 bg-warm-gray">
+      <section className="py-10 lg:py-20 bg-warm-gray">
         <div className="max-w-[1280px] mx-auto px-4 lg:px-8">
           <div className="flex items-end justify-between mb-8 lg:mb-10">
             <div>
@@ -154,7 +154,7 @@ export default async function HomePage() {
       )}
 
       {/* ===== PILLARS / SERVICES ===== */}
-      <section className="py-16 lg:py-24 bg-paper">
+      <section className="py-10 lg:py-20 bg-paper">
         <div className="max-w-[1280px] mx-auto px-4 lg:px-8">
           <div className="flex items-end justify-between mb-8 lg:mb-10">
             <div>
@@ -182,11 +182,11 @@ export default async function HomePage() {
       </section>
 
       {/* ===== MANIFESTO ===== */}
-      <section className="relative bg-navy text-white py-20 lg:py-28 overflow-hidden">
-        <div className="absolute top-[-40px] right-16 font-serif text-[280px] lg:text-[360px] leading-none text-white/[0.04] select-none">"</div>
+      <section className="relative bg-navy text-white py-14 lg:py-28 overflow-hidden">
+        <div className="absolute top-[-40px] right-6 lg:right-16 font-serif text-[160px] lg:text-[360px] leading-none text-white/[0.04] select-none">"</div>
         <div className="relative max-w-[1280px] mx-auto px-4 lg:px-8">
           <span className="sg-kicker text-[#ff8e7a]">— MANIFESTO · ما نُؤمن به</span>
-          <blockquote className="text-3xl sm:text-[42px] lg:text-[56px] leading-[1.4] font-bold tracking-[-0.01em] mt-7 max-w-[24ch]">
+          <blockquote className="text-[24px] sm:text-[36px] lg:text-[56px] leading-[1.4] font-bold tracking-[-0.01em] mt-5 lg:mt-7 max-w-full lg:max-w-[24ch]">
             المعرفة <span className="text-[#ff8e7a]">ليست ترفاً</span>. هي شرط أوّلي
             لأي مجتمع يطمح إلى <span className="text-[#ff8e7a]">اختياراته الخاصة</span>.
           </blockquote>
@@ -198,15 +198,15 @@ export default async function HomePage() {
 
       {/* ===== IMPACT BAND ===== */}
       <section className="bg-coral text-white py-14 lg:py-16">
-        <div className="max-w-[1280px] mx-auto px-4 lg:px-8 grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        <div className="max-w-[1280px] mx-auto px-4 lg:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-8">
           {[
-            { num: `${articleCount}`, label: "بحثاً ودراسة منشورة في الاقتصاد والحوكمة والتنمية" },
-            { num: "1K+", label: "مستفيد من برامج التدريب وبناء القدرات منذ التأسيس" },
-            { num: String(projects.length), label: "مشاريع نُفّذت في مصر وأفريقيا والشرق الأوسط" },
-            { num: "5", label: "شريكاً دولياً ومحلياً في الجامعات والمنظمات" },
+            { num: `${articleCount}`, label: "بحثاً ودراسة منشورة" },
+            { num: "1K+", label: "مستفيد من برامج التدريب" },
+            { num: String(projects.length), label: "مشاريع نُفّذت" },
+            { num: "5", label: "شريك دولي ومحلي" },
           ].map((s) => (
-            <div key={s.label} className="lg:border-l lg:border-white/20 lg:pl-8 last:border-0">
-              <div className="text-[48px] lg:text-[72px] font-black leading-none tracking-tight font-inter mb-2">{s.num}</div>
+            <div key={s.label} className="border-b sm:border-b-0 lg:border-l border-white/20 pb-4 sm:pb-0 lg:pl-8 last:border-0 last:pb-0">
+              <div className="text-[40px] lg:text-[72px] font-black leading-none tracking-tight font-inter mb-1">{s.num}</div>
               <div className="text-sm text-white/90 leading-relaxed">{s.label}</div>
             </div>
           ))}
@@ -214,7 +214,7 @@ export default async function HomePage() {
       </section>
 
       {/* ===== LATEST ARTICLES ===== */}
-      <section className="py-16 lg:py-24 bg-paper">
+      <section className="py-10 lg:py-20 bg-paper">
         <div className="max-w-[1280px] mx-auto px-4 lg:px-8">
           <div className="flex items-end justify-between mb-10 lg:mb-12">
             <div>
@@ -268,7 +268,7 @@ export default async function HomePage() {
       </section>
 
       {/* ===== CTA BAND ===== */}
-      <section className="py-16 lg:py-24 bg-paper border-t border-rule">
+      <section className="py-10 lg:py-20 bg-paper border-t border-rule">
         <div className="max-w-[1280px] mx-auto px-4 lg:px-8">
           <div className="mb-10">
             <span className="sg-kicker">— GET INVOLVED · انضم إلينا</span>
