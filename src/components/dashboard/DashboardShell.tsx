@@ -64,13 +64,17 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
               <X size={20} />
             </button>
           </div>
-          <nav className="p-3 space-y-0.5 flex-1">
+          <div className="px-5 pt-5 pb-2">
+            <p className="font-mono text-[10px] tracking-[0.14em] uppercase text-white/40 font-semibold mb-2">CONTENT</p>
+          </div>
+          <nav className="px-3 space-y-0.5 flex-1">
             {SIDEBAR.map((item) => {
               const active = pathname === item.href || (item.href !== "/admin" && pathname.startsWith(item.href));
               return (
                 <Link key={item.href} href={item.href}
-                  className={`flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors text-sm font-medium ${active ? "bg-white/15 text-white" : "text-white/60 hover:text-white hover:bg-white/10"}`}>
-                  <span className="text-base">{item.icon}</span>
+                  className={`flex items-center gap-3 px-4 py-2.5 relative transition-colors text-[13.5px] ${active ? "bg-white/[0.06] text-white" : "text-white/[0.75] hover:text-white hover:bg-white/[0.04]"}`}>
+                  {active && <span className="absolute right-0 top-0 bottom-0 w-[3px] bg-coral" />}
+                  <span className="text-base opacity-80">{item.icon}</span>
                   {item.label}
                 </Link>
               );
