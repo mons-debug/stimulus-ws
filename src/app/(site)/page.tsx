@@ -108,7 +108,7 @@ export default async function HomePage() {
       <section className="bg-navy text-white py-3 border-t border-white/[0.08] relative">
         <div className="absolute right-0 top-0 bottom-0 flex items-center gap-2.5 px-4 lg:px-6 z-10 bg-navy border-l border-white/10">
           <span className="w-2 h-2 rounded-full bg-[#ff8e7a] animate-[sg-pulse-dot_1.6s_ease-out_infinite]" />
-          <span className="text-[11px] tracking-wide text-[#ff8e7a] font-bold whitespace-nowrap">عاجل</span>
+          <span className="text-[11px] tracking-wide text-[#ff8e7a] font-bold whitespace-nowrap">آخر التحديثات</span>
         </div>
         <NewsTicker items={articles.slice(0, 5).map(a => ({
           title: a.title,

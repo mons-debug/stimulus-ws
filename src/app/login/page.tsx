@@ -34,7 +34,7 @@ function LoginForm() {
   return (
     <div className="bg-white rounded-2xl p-8 sm:p-12 w-full max-w-md shadow-2xl">
       <div className="text-center mb-8">
-        <Image src="https://stimulusgroups.org/wp-content/uploads/2023/07/stimulislogo.png" alt="SGO" width={160} height={60} className="mx-auto mb-4" />
+        <Image src="/logo-full.png" alt="SGO" width={160} height={60} className="mx-auto mb-4" />
         <h1 className="text-2xl font-extrabold text-navy">تسجيل الدخول</h1>
         <p className="text-text-light text-sm mt-1">لوحة تحكم المنظمة</p>
       </div>

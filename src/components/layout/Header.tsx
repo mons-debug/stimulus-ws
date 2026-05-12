@@ -60,7 +60,7 @@ export function Header() {
       <div className="max-w-[1280px] mx-auto px-4 lg:px-8 py-4 lg:py-5 flex items-center justify-between gap-4 lg:gap-9">
         {/* BRAND */}
         <Link href="/" className="flex items-center gap-3 flex-shrink-0">
-          <Image src="/logo-icon.png" alt="" width={44} height={44} className="w-10 h-10 lg:w-11 lg:h-11" />
+          <Image src="/logo-icon.png" alt="" width={44} height={44} className="w-10 h-10 lg:w-11 lg:h-11 object-contain" />
           <div>
             <span className="block text-lg lg:text-xl font-extrabold text-navy leading-none tracking-tight">مجموعات التحفيز</span>
             <span className="block font-mono text-[9px] lg:text-[10px] tracking-[0.14em] uppercase text-text-light mt-0.5">STIMULUS GROUPS</span>

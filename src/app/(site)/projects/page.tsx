@@ -34,7 +34,7 @@ export default async function ProjectsPage() {
                 {project.partnerLogos.length > 0 && (
                   <div className="flex items-center justify-center gap-8 mb-6">
                     <Image src={project.partnerLogos[0]} alt="Partner" width={200} height={80} className="h-16 w-auto object-contain" />
-                    <Image src="https://stimulusgroups.org/wp-content/uploads/2023/07/stimulislogo.png" alt="SGO" width={200} height={80} className="h-16 w-auto object-contain" />
+                    <Image src="/logo-full.png" alt="SGO" width={200} height={80} className="h-16 w-auto object-contain" />
                   </div>
                 )}
                 <p className="text-coral text-xs font-bold mb-1">مشروع</p>
