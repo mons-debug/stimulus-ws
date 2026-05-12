@@ -2,7 +2,7 @@ import { prisma } from "@/lib/db";
 import Link from "next/link";
 
 export default async function AdminDashboard() {
-  const [articleCount, draftCount, commentCount, pendingComments, contactCount, newContacts, subscriberCount, partnerCount] = await Promise.all([
+  const [articleCount, draftCount, commentCount, pendingComments, contactCount, unreadContacts, subscriberCount, partnerCount] = await Promise.all([
     prisma.article.count({ where: { published: true } }),
     prisma.article.count({ where: { published: false } }),
     prisma.comment.count(),
@@ -19,127 +19,136 @@ export default async function AdminDashboard() {
     prisma.contactSubmission.findMany({ orderBy: { createdAt: "desc" }, take: 3 }),
   ]);
 
-  const stats = [
-    { label: "مقالات منشورة", count: articleCount, href: "/admin/articles", color: "bg-coral", icon: "✎" },
-    { label: "مسودات", count: draftCount, href: "/admin/articles", color: "bg-yellow-500", icon: "📝" },
-    { label: "تعليقات معلقة", count: pendingComments, href: "/admin/comments", color: "bg-navy", icon: "💬" },
-    { label: "رسائل جديدة", count: newContacts, href: "/admin/contacts", color: "bg-[#25D366]", icon: "✉" },
-    { label: "المشتركين", count: subscriberCount, href: "/admin/subscribers", color: "bg-[#3B82F6]", icon: "👥" },
-    { label: "الشركاء", count: partnerCount, href: "/admin/partners", color: "bg-purple-500", icon: "🤝" },
-  ];
-
   return (
     <div>
-      <div className="flex items-center justify-between mb-4 lg:mb-6">
-        <h1 className="text-xl lg:text-3xl font-extrabold text-navy">لوحة التحكم</h1>
-        <Link href="/admin/articles/new" className="bg-coral text-white font-bold px-4 lg:px-6 py-2 lg:py-2.5 rounded-xl hover:bg-coral-hover transition-colors text-xs lg:text-sm">+ مقال جديد</Link>
+      {/* Welcome strip */}
+      <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-6 lg:mb-8">
+        <div>
+          <h2 className="text-xl lg:text-[32px] font-extrabold text-navy tracking-tight mb-1">مرحباً بك 👋</h2>
+          <p className="text-text-light text-sm">إليك ملخص أداء المنصة اليوم. <b className="text-coral">{pendingComments} تعليقات</b> في انتظار المراجعة.</p>
+        </div>
+        <div className="mt-3 lg:mt-0">
+          <Link href="/admin/articles/new" className="bg-coral text-white font-bold px-5 py-2.5 text-sm hover:bg-coral-hover transition-colors inline-flex items-center gap-2">
+            + مقال جديد
+          </Link>
+        </div>
       </div>
 
-      {/* Stats grid */}
-      <div className="grid grid-cols-3 lg:grid-cols-6 gap-2 lg:gap-4 mb-6">
-        {stats.map((s) => (
-          <Link key={s.label} href={s.href} className="bg-white rounded-xl lg:rounded-2xl p-3 lg:p-5 border border-border hover:shadow-md transition-all text-center">
-            <div className={`w-8 h-8 lg:w-10 lg:h-10 ${s.color} rounded-lg lg:rounded-xl flex items-center justify-center text-white text-sm lg:text-base mx-auto mb-2`}>
-              {s.icon}
+      {/* KPI Row */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-0 bg-white border border-rule mb-6">
+        {[
+          { label: "ARTICLES", num: articleCount, sub: "مقالات منشورة", icon: "✎" },
+          { label: "DRAFTS", num: draftCount, sub: "مسودات", icon: "📝" },
+          { label: "COMMENTS", num: pendingComments, sub: "تعليقات معلّقة", icon: "💬" },
+          { label: "CONTACTS", num: unreadContacts, sub: "رسائل جديدة", icon: "✉" },
+        ].map((kpi, i) => (
+          <div key={kpi.label} className={`p-5 lg:p-7 ${i > 0 ? "border-r border-rule" : ""} ${i >= 2 ? "border-t lg:border-t-0 border-rule" : ""}`}>
+            <div className="flex items-center gap-2 mb-3">
+              <span className="text-base">{kpi.icon}</span>
+              <span className="font-mono text-[10px] tracking-[0.14em] uppercase text-text-light font-semibold">{kpi.label}</span>
             </div>
-            <p className="text-lg lg:text-2xl font-black text-navy">{s.count}</p>
-            <p className="text-text-light text-[10px] lg:text-xs">{s.label}</p>
-          </Link>
+            <div className="text-3xl lg:text-4xl font-extrabold text-navy tracking-tight font-inter leading-none mb-2">{kpi.num}</div>
+            <div className="text-xs text-text-light">{kpi.sub}</div>
+          </div>
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
+      {/* Main grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-5 lg:gap-6 mb-6">
         {/* Recent articles */}
-        <div className="bg-white rounded-xl lg:rounded-2xl p-4 lg:p-6 border border-border">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-base lg:text-lg font-bold text-navy">آخر المقالات</h2>
-            <Link href="/admin/articles" className="text-coral text-xs font-semibold hover:underline">عرض الكل</Link>
+        <div className="bg-white border border-rule">
+          <div className="flex items-center justify-between p-5 border-b border-rule">
+            <h3 className="text-[15px] font-extrabold text-navy">آخر المقالات</h3>
+            <Link href="/admin/articles" className="font-mono text-[10px] tracking-[0.12em] uppercase text-coral font-bold hover:underline">عرض الكل ←</Link>
           </div>
-          <div className="space-y-2">
+          <div>
             {recentArticles.map((a) => (
-              <Link key={a.id} href={`/admin/articles/${a.id}`} className="flex items-center justify-between gap-3 p-2.5 rounded-lg hover:bg-warm-gray transition-colors">
+              <Link key={a.id} href={`/admin/articles/${a.id}`} className="flex items-center justify-between gap-3 px-5 py-4 border-b border-rule last:border-0 hover:bg-paper transition-colors">
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-semibold text-navy truncate">{a.title}</p>
-                  <p className="text-[10px] text-text-light">{a.category?.name} · {a.publishedAt?.toLocaleDateString("ar-EG", { month: "short", day: "numeric" })}</p>
+                  {a.category && <span className="font-mono text-[10px] tracking-[0.14em] uppercase text-coral font-bold block mb-1">{a.category.name}</span>}
+                  <p className="text-[13.5px] font-bold text-navy truncate">{a.title}</p>
                 </div>
-                <span className={`flex-shrink-0 px-2 py-0.5 rounded-full text-[10px] font-bold ${a.published ? "bg-green-100 text-green-700" : "bg-yellow-100 text-yellow-700"}`}>
-                  {a.published ? "منشور" : "مسودة"}
+                <span className={`flex-shrink-0 inline-flex items-center gap-1.5 px-2.5 py-1 font-mono text-[10px] tracking-[0.12em] uppercase font-bold ${a.published ? "bg-green-100/80 text-green-700" : "bg-gray-100 text-text-light"}`}>
+                  <span className={`w-1.5 h-1.5 rounded-full ${a.published ? "bg-green-600" : "bg-gray-400"}`} />
+                  {a.published ? "PUB" : "DRAFT"}
                 </span>
               </Link>
             ))}
           </div>
         </div>
 
-        {/* Recent comments */}
-        <div className="bg-white rounded-xl lg:rounded-2xl p-4 lg:p-6 border border-border">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-base lg:text-lg font-bold text-navy">آخر التعليقات</h2>
-            <Link href="/admin/comments" className="text-coral text-xs font-semibold hover:underline">عرض الكل ({commentCount})</Link>
+        {/* Recent activity */}
+        <div className="bg-white border border-rule">
+          <div className="flex items-center justify-between p-5 border-b border-rule">
+            <h3 className="text-[15px] font-extrabold text-navy">النشاط الأخير</h3>
+            <Link href="/admin/comments" className="font-mono text-[10px] tracking-[0.12em] uppercase text-coral font-bold hover:underline">التعليقات ({commentCount}) ←</Link>
           </div>
-          {recentComments.length === 0 ? (
-            <p className="text-text-light text-sm text-center py-6">لا توجد تعليقات</p>
-          ) : (
-            <div className="space-y-3">
-              {recentComments.map((c) => (
-                <div key={c.id} className={`p-3 rounded-lg border ${c.approved ? "border-border bg-warm-gray/30" : "border-yellow-200 bg-yellow-50"}`}>
-                  <div className="flex items-center justify-between mb-1">
-                    <p className="text-sm font-bold text-navy">{c.author}</p>
-                    <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-full ${c.approved ? "bg-green-100 text-green-700" : "bg-yellow-100 text-yellow-700"}`}>
-                      {c.approved ? "مقبول" : "معلق"}
-                    </span>
+          <div>
+            {recentComments.length === 0 ? (
+              <p className="text-text-light text-sm text-center py-8">لا توجد تعليقات</p>
+            ) : (
+              recentComments.map((c) => (
+                <div key={c.id} className="flex gap-3 px-5 py-3.5 border-b border-rule last:border-0 items-start">
+                  <div className={`w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center font-mono text-[11px] font-bold ${c.approved ? "bg-green-100 text-green-700" : "bg-coral/10 text-coral"}`}>
+                    {c.approved ? "✓" : "?"}
                   </div>
-                  <p className="text-xs text-text-light line-clamp-2 mb-1">{c.content}</p>
-                  <p className="text-[10px] text-text-light">المقال: {c.article?.title}</p>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-[13.5px] text-ink leading-snug"><b className="text-navy">{c.author}</b> علّق</p>
+                    <p className="font-mono text-[11px] text-text-light tracking-wide mt-1 truncate">{c.article?.title}</p>
+                  </div>
                 </div>
-              ))}
-            </div>
-          )}
+              ))
+            )}
+          </div>
         </div>
+      </div>
 
+      {/* Secondary grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-5 lg:gap-6">
         {/* Recent contacts */}
-        <div className="bg-white rounded-xl lg:rounded-2xl p-4 lg:p-6 border border-border">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-base lg:text-lg font-bold text-navy">رسائل التواصل</h2>
-            <Link href="/admin/contacts" className="text-coral text-xs font-semibold hover:underline">عرض الكل ({contactCount})</Link>
+        <div className="bg-white border border-rule">
+          <div className="flex items-center justify-between p-5 border-b border-rule">
+            <h3 className="text-[15px] font-extrabold text-navy">رسائل التواصل</h3>
+            <Link href="/admin/contacts" className="font-mono text-[10px] tracking-[0.12em] uppercase text-coral font-bold hover:underline">عرض الكل ({contactCount}) ←</Link>
           </div>
-          {recentContacts.length === 0 ? (
-            <p className="text-text-light text-sm text-center py-6">لا توجد رسائل</p>
-          ) : (
-            <div className="space-y-2">
-              {recentContacts.map((c) => (
-                <div key={c.id} className={`p-3 rounded-lg border ${!c.read ? "border-coral/20 bg-coral/5" : "border-border"}`}>
+          <div>
+            {recentContacts.length === 0 ? (
+              <p className="text-text-light text-sm text-center py-8">لا توجد رسائل</p>
+            ) : (
+              recentContacts.map((c) => (
+                <div key={c.id} className={`px-5 py-4 border-b border-rule last:border-0 ${!c.read ? "bg-coral/[0.03]" : ""}`}>
                   <div className="flex items-center justify-between mb-1">
-                    <p className="text-sm font-bold text-navy">{c.fullName}</p>
-                    {!c.read && <span className="bg-coral text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full">جديد</span>}
+                    <p className="text-[13.5px] font-bold text-navy">{c.fullName}</p>
+                    {!c.read && <span className="font-mono text-[9px] tracking-[0.14em] uppercase bg-coral text-white px-2 py-0.5 font-bold">NEW</span>}
                   </div>
-                  <p className="text-xs text-text-light truncate">{c.message}</p>
-                  <p className="text-[10px] text-text-light mt-1">{c.email} · {c.createdAt.toLocaleDateString("ar-EG", { month: "short", day: "numeric" })}</p>
+                  <p className="text-xs text-text truncate">{c.message}</p>
+                  <p className="font-mono text-[10px] text-text-light tracking-wide mt-1">{c.email} · {c.createdAt.toLocaleDateString("ar-EG", { month: "short", day: "numeric" })}</p>
                 </div>
-              ))}
-            </div>
-          )}
+              ))
+            )}
+          </div>
         </div>
 
-        {/* Quick links */}
-        <div className="bg-white rounded-xl lg:rounded-2xl p-4 lg:p-6 border border-border">
-          <h2 className="text-base lg:text-lg font-bold text-navy mb-4">إجراءات سريعة</h2>
-          <div className="grid grid-cols-2 gap-2">
-            <Link href="/admin/articles/new" className="bg-coral/5 border border-coral/20 rounded-xl p-3 text-center hover:bg-coral/10 transition-colors">
-              <span className="text-lg block mb-1">✎</span>
-              <p className="text-xs font-bold text-navy">كتابة مقال</p>
-            </Link>
-            <Link href="/admin/comments" className="bg-navy/5 border border-navy/10 rounded-xl p-3 text-center hover:bg-navy/10 transition-colors">
-              <span className="text-lg block mb-1">💬</span>
-              <p className="text-xs font-bold text-navy">مراجعة التعليقات</p>
-            </Link>
-            <Link href="/admin/projects/new" className="bg-purple-50 border border-purple-100 rounded-xl p-3 text-center hover:bg-purple-100 transition-colors">
-              <span className="text-lg block mb-1">📋</span>
-              <p className="text-xs font-bold text-navy">مشروع جديد</p>
-            </Link>
-            <Link href="/" target="_blank" className="bg-green-50 border border-green-100 rounded-xl p-3 text-center hover:bg-green-100 transition-colors">
-              <span className="text-lg block mb-1">🌐</span>
-              <p className="text-xs font-bold text-navy">زيارة الموقع</p>
-            </Link>
+        {/* Quick actions */}
+        <div className="bg-white border border-rule">
+          <div className="p-5 border-b border-rule">
+            <h3 className="text-[15px] font-extrabold text-navy">إجراءات سريعة</h3>
+          </div>
+          <div>
+            {[
+              { icon: "✎", label: "كتابة مقال جديد", href: "/admin/articles/new" },
+              { icon: "💬", label: "مراجعة التعليقات", href: "/admin/comments" },
+              { icon: "📋", label: "إضافة مشروع", href: "/admin/projects/new" },
+              { icon: "🤝", label: "إدارة الشركاء", href: "/admin/partners" },
+              { icon: "⚙", label: "الإعدادات", href: "/admin/settings" },
+              { icon: "🌐", label: "زيارة الموقع", href: "/" },
+            ].map((a) => (
+              <Link key={a.href} href={a.href} target={a.href === "/" ? "_blank" : undefined}
+                className="flex items-center gap-3.5 px-5 py-4 border-b border-rule last:border-0 hover:bg-paper transition-colors text-[13.5px] text-ink">
+                <span className="text-base">{a.icon}</span>
+                {a.label}
+              </Link>
+            ))}
           </div>
         </div>
       </div>
