@@ -112,6 +112,7 @@ export default async function HomePage() {
         </div>
         <NewsTicker items={articles.slice(0, 5).map(a => ({
           title: a.title,
+          slug: a.slug,
           date: a.publishedAt?.toLocaleDateString("ar-EG", { month: "short", day: "numeric" }) || "",
         }))} />
       </section>

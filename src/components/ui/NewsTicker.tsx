@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Link from "next/link";
 
-type TickerItem = { title: string; date: string };
+type TickerItem = { title: string; date: string; slug: string };
 
 export function NewsTicker({ items }: { items: TickerItem[] }) {
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -14,14 +15,15 @@ export function NewsTicker({ items }: { items: TickerItem[] }) {
     if (!track || !wrap) return;
 
     let pos = 0;
-    const speed = 1.2;
+    const isMobile = window.innerWidth < 768;
+    const speed = isMobile ? 0.6 : 1.2;
     let animId: number;
     const contentWidth = track.scrollWidth / 2;
 
     function step() {
       pos -= speed;
       if (pos <= -contentWidth) {
-        pos = wrap!.offsetWidth;
+        pos = 0;
       }
       track!.style.transform = `translateX(${pos}px)`;
       animId = requestAnimationFrame(step);
@@ -36,11 +38,13 @@ export function NewsTicker({ items }: { items: TickerItem[] }) {
       <div ref={trackRef} className="inline-flex items-center will-change-transform">
         {[0, 1].map((copy) =>
           items.map((item, i) => (
-            <span key={`${copy}-${i}`} className="text-[13px] text-white/80 inline-flex items-center gap-3 flex-shrink-0 px-6" style={{ direction: "rtl" }}>
+            <Link key={`${copy}-${i}`} href={`/blog/${item.slug}`}
+              className="text-[13px] text-white/80 hover:text-white inline-flex items-center gap-3 flex-shrink-0 px-6 transition-colors"
+              style={{ direction: "rtl" }}>
               <span className="w-1.5 h-1.5 rounded-full bg-[#ff8e7a] flex-shrink-0" />
               {item.title}
               <span className="font-mono text-[10px] text-white/40">{item.date}</span>
-            </span>
+            </Link>
           ))
         )}
       </div>
