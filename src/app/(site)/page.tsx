@@ -26,10 +26,10 @@ export default async function HomePage() {
   return (
     <>
       {/* ===== HERO — Editorial masthead ===== */}
-      <section className="relative bg-paper overflow-hidden pt-8 lg:pt-14 pb-10 lg:pb-16">
+      <section className="relative bg-paper overflow-hidden pt-4 lg:pt-8 pb-8 lg:pb-12">
         <div className="sg-noise" />
         <div className="relative max-w-[1280px] mx-auto px-4 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr_260px] gap-8 lg:gap-14">
+          <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr_260px] gap-6 lg:gap-12">
 
             {/* MASTHEAD RAIL — stats */}
             <aside className="hidden lg:block border-l border-rule pl-8">
@@ -55,12 +55,12 @@ export default async function HomePage() {
                 <span className="w-9 h-0.5 bg-coral" />
                 <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-coral font-bold">A EUROPEAN NPO · بيت فكر مستقل</span>
               </div>
-              <h1 className="text-[38px] sm:text-[58px] lg:text-[82px] leading-[1.15] font-black text-navy tracking-[-0.02em] mb-6 lg:mb-7 sg-rise sg-rise-d1">
+              <h1 className="text-[34px] sm:text-[52px] lg:text-[76px] leading-[1.15] font-black text-navy tracking-[-0.02em] mb-4 lg:mb-5 sg-rise sg-rise-d1">
                 نُنتج <span className="relative inline-block">المعرفة<span className="absolute left-0 right-0 bottom-2 lg:bottom-3 h-2.5 lg:h-3 bg-coral/[0.18] -z-10" /></span><br />
                 ونصنع <span className="text-coral">الحوار</span><br />
                 ونبني الجيل القادم.
               </h1>
-              <p className="text-base lg:text-xl leading-relaxed text-text max-w-[55ch] mb-8 sg-rise sg-rise-d2">
+              <p className="text-sm lg:text-lg leading-relaxed text-text max-w-[55ch] mb-5 sg-rise sg-rise-d2">
                 منظمة مجموعات التحفيز مؤسسة بحثية أوروبية مستقلة تعمل في مصر وأفريقيا والشرق الأوسط على إنتاج الأبحاث والدراسات، تيسير الحوار العام حول قضايا السياسة والتنمية، وبناء قدرات الشباب.
               </p>
               <div className="flex items-center gap-3 flex-wrap sg-rise sg-rise-d3">
