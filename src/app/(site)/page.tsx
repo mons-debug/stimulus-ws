@@ -159,17 +159,17 @@ export default async function HomePage() {
         <div className="max-w-[1280px] mx-auto px-4 lg:px-8">
           <div className="flex items-end justify-between mb-8 lg:mb-10">
             <div>
-              <span className="sg-kicker">— OUR PROGRAMS · ٤ محاور</span>
+              <span className="sg-kicker">— OUR PROGRAMS · 4 محاور</span>
               <h2 className="text-3xl lg:text-[56px] font-black text-navy leading-[1.15] tracking-tight mt-3">المحاور الأربعة</h2>
             </div>
             <Link href="/services" className="hidden lg:inline-flex items-center gap-2 text-coral font-bold text-sm hover:underline">جميع البرامج ←</Link>
           </div>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-0 border-t border-rule border-r border-rule">
             {[
-              { num: "٠١ / البحث", title: "البحوث والدراسات", desc: "إنتاج أبحاث تطبيقية ودراسات سياسات عامة في الاقتصاد والحوكمة والتنمية المحلية.", stat: `${articleCount} دراسة منشورة` },
-              { num: "٠٢ / الحوار", title: "الحوار والنقاش العام", desc: "تنظيم منصات حوارية وموائد مستديرة تجمع الأكاديميين وصنّاع القرار والمجتمع المدني.", stat: "ندوات ومؤتمرات" },
-              { num: "٠٣ / التدريب", title: "التدريب وبناء القدرات", desc: "برامج لإعداد الجيل القادم من الباحثين والمحللين في مهارات البحث الكمي والنوعي.", stat: "1000+ مستفيد" },
-              { num: "٠٤ / الوعي", title: "الوعي المجتمعي", desc: "إنتاج محتوى معرفي مبسّط — مقالات وإنفوغرافيك — لجسر الفجوة بين البحث والنقاش العام.", stat: "المدوّنة والمحتوى" },
+              { num: "01 / البحث", title: "البحوث والدراسات", desc: "إنتاج أبحاث تطبيقية ودراسات سياسات عامة في الاقتصاد والحوكمة والتنمية المحلية.", stat: `${articleCount} دراسة منشورة` },
+              { num: "02 / الحوار", title: "الحوار والنقاش العام", desc: "تنظيم منصات حوارية وموائد مستديرة تجمع الأكاديميين وصنّاع القرار والمجتمع المدني.", stat: "ندوات ومؤتمرات" },
+              { num: "03 / التدريب", title: "التدريب وبناء القدرات", desc: "برامج لإعداد الجيل القادم من الباحثين والمحللين في مهارات البحث الكمي والنوعي.", stat: "1000+ مستفيد" },
+              { num: "04 / الوعي", title: "الوعي المجتمعي", desc: "إنتاج محتوى معرفي مبسّط — مقالات وإنفوغرافيك — لجسر الفجوة بين البحث والنقاش العام.", stat: "المدوّنة والمحتوى" },
             ].map((p) => (
               <Link key={p.num} href="/services" className="group bg-white border-b border-l border-rule p-7 lg:p-8 min-h-[280px] lg:min-h-[320px] flex flex-col hover:bg-warm-gray transition-colors">
                 <div className="font-mono text-[11px] tracking-[0.14em] text-coral font-bold mb-8">{p.num}</div>
@@ -277,9 +277,9 @@ export default async function HomePage() {
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-0 border-t border-rule lg:border-r border-rule">
             {[
-              { num: "۰۱", title: "تبرّع", desc: "تبرعك يموّل بحثاً مستقلاً ومحايداً ويُتيحه مجاناً للجميع.", href: "/donate", btn: "تبرع الآن ←", style: "bg-coral text-white" },
-              { num: "۰۲", title: "تطوّع", desc: "سواء كنت باحثاً، مصمماً، أو محرراً — فريقنا يفتح أبوابه.", href: "/contact", btn: "قدّم طلباً ←", style: "border border-navy text-navy" },
-              { num: "۰۳", title: "اشترك", desc: "نشرة بريدية بأهم ما نُنتجه من أبحاث ومقالات وتحليلات.", href: "/contact", btn: "اشترك بالنشرة ←", style: "bg-navy text-white" },
+              { num: "01", title: "تبرّع", desc: "تبرعك يموّل بحثاً مستقلاً ومحايداً ويُتيحه مجاناً للجميع.", href: "/donate", btn: "تبرع الآن ←", style: "bg-coral text-white" },
+              { num: "02", title: "تطوّع", desc: "سواء كنت باحثاً، مصمماً، أو محرراً — فريقنا يفتح أبوابه.", href: "/contact", btn: "قدّم طلباً ←", style: "border border-navy text-navy" },
+              { num: "03", title: "اشترك", desc: "نشرة بريدية بأهم ما نُنتجه من أبحاث ومقالات وتحليلات.", href: "/contact", btn: "اشترك بالنشرة ←", style: "bg-navy text-white" },
             ].map((c) => (
               <div key={c.num} className="bg-white border-b border-l border-rule p-8 lg:p-10">
                 <div className="font-mono text-4xl font-extrabold text-coral mb-6 tracking-tight">{c.num}</div>
