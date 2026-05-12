@@ -13,7 +13,7 @@ export function NewsTicker({ items }: { items: TickerItem[] }) {
     const wrap = wrapRef.current;
     if (!track || !wrap) return;
 
-    let pos = wrap.offsetWidth;
+    let pos = 0;
     const speed = 1.2;
     let animId: number;
     const contentWidth = track.scrollWidth / 2;
