@@ -49,20 +49,20 @@ export default async function HomePage() {
 
             {/* HEADLINE — center */}
             <div className="pt-1">
-              <div className="flex items-center gap-3 mb-6 lg:mb-7">
+              <div className="flex items-center gap-3 mb-6 lg:mb-7 sg-rise">
                 <span className="w-9 h-0.5 bg-coral" />
                 <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-coral font-bold">A EUROPEAN NPO · بيت فكر مستقل</span>
               </div>
-              <h1 className="text-[42px] sm:text-[64px] lg:text-[88px] leading-[0.95] font-black text-navy tracking-tight mb-6 lg:mb-7">
+              <h1 className="text-[42px] sm:text-[64px] lg:text-[88px] leading-[0.95] font-black text-navy tracking-tight mb-6 lg:mb-7 sg-rise sg-rise-d1">
                 نُنتج <span className="relative inline-block">المعرفة<span className="absolute left-0 right-0 bottom-1 lg:bottom-2 h-3 lg:h-3.5 bg-coral/[0.18] -z-10" /></span><br />
                 ونصنع <span className="text-coral">الحوار</span><br />
                 ونبني الجيل القادم.
               </h1>
-              <p className="text-base lg:text-xl leading-relaxed text-text max-w-[55ch] mb-8">
+              <p className="text-base lg:text-xl leading-relaxed text-text max-w-[55ch] mb-8 sg-rise sg-rise-d2">
                 منظمة مجموعات التحفيز مؤسسة بحثية أوروبية مستقلة تعمل في مصر وأفريقيا والشرق الأوسط على إنتاج الأبحاث والدراسات، تيسير الحوار العام حول قضايا السياسة والتنمية، وبناء قدرات الشباب.
               </p>
-              <div className="flex items-center gap-3 flex-wrap">
-                <Link href="/about" className="bg-coral text-white font-bold px-6 py-3 text-sm hover:bg-coral-hover transition-colors flex items-center gap-2">
+              <div className="flex items-center gap-3 flex-wrap sg-rise sg-rise-d3">
+                <Link href="/about" className="bg-coral text-white font-bold px-6 py-3 text-sm hover:bg-coral-hover btn-base flex items-center gap-2">
                   تعرّف علينا
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M12 5l-7 7 7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>
                 </Link>

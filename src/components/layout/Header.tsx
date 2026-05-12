@@ -83,7 +83,7 @@ export function Header() {
 
         {/* DESKTOP CTA */}
         <div className="hidden lg:flex items-center gap-2.5 flex-shrink-0">
-          <Link href="/donate" className="bg-coral text-white font-semibold px-5 py-2.5 text-sm hover:bg-coral-hover transition-colors flex items-center gap-2">
+          <Link href="/donate" className="bg-coral text-white font-semibold px-5 py-2.5 text-sm hover:bg-coral-hover btn-base flex items-center gap-2">
             تبرّع
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M12 5l-7 7 7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>
           </Link>
