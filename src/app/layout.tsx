@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cairo, Inter } from "next/font/google";
+import { Cairo, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
 const cairo = Cairo({
@@ -12,6 +12,12 @@ const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -29,7 +35,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ar" dir="rtl" className={`${cairo.variable} ${inter.variable}`}>
+    <html lang="ar" dir="rtl" className={`${cairo.variable} ${inter.variable} ${jetbrainsMono.variable}`}>
       <body className="min-h-screen font-[family-name:var(--font-cairo)]">
         {children}
       </body>
