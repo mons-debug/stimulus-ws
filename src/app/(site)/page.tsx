@@ -103,25 +103,16 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ===== TICKER — news channel style ===== */}
+      {/* ===== TICKER — seamless news loop ===== */}
       <section className="bg-navy text-white py-3 overflow-hidden border-t border-white/[0.08] relative">
         <div className="absolute right-0 top-0 bottom-0 flex items-center gap-2.5 px-4 lg:px-6 z-10 bg-navy border-l border-white/10">
           <span className="w-2 h-2 rounded-full bg-[#ff8e7a] animate-[sg-pulse-dot_1.6s_ease-out_infinite]" />
           <span className="text-[11px] tracking-wide text-[#ff8e7a] font-bold whitespace-nowrap">عاجل</span>
         </div>
-        <div className="flex whitespace-nowrap">
-          <div className="inline-flex gap-10 animate-[sg-marquee_35s_linear_infinite]">
-            {articles.slice(0, 5).map((a) => (
-              <span key={a.id} className="text-[13px] text-white/80 inline-flex items-center gap-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#ff8e7a] flex-shrink-0" />
-                {a.title}
-                <span className="font-mono text-[10px] text-white/40 tracking-[0.06em]">{a.publishedAt?.toLocaleDateString("ar-EG", { month: "short", day: "numeric" })}</span>
-              </span>
-            ))}
-          </div>
-          <div className="inline-flex gap-10 animate-[sg-marquee_35s_linear_infinite]">
-            {articles.slice(0, 5).map((a) => (
-              <span key={`dup-${a.id}`} className="text-[13px] text-white/80 inline-flex items-center gap-3">
+        <div className="overflow-hidden">
+          <div className="inline-flex gap-10 whitespace-nowrap animate-[sg-marquee_45s_linear_infinite]" style={{ width: "max-content" }}>
+            {[...articles.slice(0, 5), ...articles.slice(0, 5)].map((a, i) => (
+              <span key={`tick-${i}`} className="text-[13px] text-white/80 inline-flex items-center gap-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#ff8e7a] flex-shrink-0" />
                 {a.title}
                 <span className="font-mono text-[10px] text-white/40 tracking-[0.06em]">{a.publishedAt?.toLocaleDateString("ar-EG", { month: "short", day: "numeric" })}</span>
@@ -130,6 +121,43 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ===== PROJECTS (moved here — right under hero) ===== */}
+      {projects.length > 0 && (
+      <section className="py-12 lg:py-20 bg-warm-gray">
+        <div className="max-w-[1280px] mx-auto px-4 lg:px-8">
+          <div className="flex items-end justify-between mb-8 lg:mb-10">
+            <div>
+              <span className="sg-kicker">— FEATURED PROJECTS · مشاريع</span>
+              <h2 className="text-2xl lg:text-[48px] font-black text-navy leading-[1.15] tracking-tight mt-3">من المشاريع الجارية</h2>
+            </div>
+            <Link href="/projects" className="hidden lg:inline-flex items-center gap-2 text-coral font-bold text-sm hover:underline">جميع المشاريع ({projects.length}) ←</Link>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6">
+            {projects.map((project) => (
+              <Link key={project.id} href={`/projects/${project.slug}`}
+                className="group bg-white border border-rule flex flex-col hover:-translate-y-0.5 hover:shadow-[0_16px_36px_rgba(27,42,74,0.1)] transition-all">
+                <div className="relative aspect-[16/10] overflow-hidden bg-warm-gray">
+                  {project.featuredImage ? (
+                    <Image src={project.featuredImage} alt={project.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                  ) : project.partnerLogos[0] ? (
+                    <div className="w-full h-full flex items-center justify-center bg-warm-gray">
+                      <Image src={project.partnerLogos[0]} alt="" width={140} height={60} className="opacity-40 group-hover:opacity-70 transition-opacity" />
+                    </div>
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-warm-gray"><span className="text-navy/10 text-4xl font-black">SGO</span></div>
+                  )}
+                </div>
+                <div className="p-5 lg:p-6 flex-1 flex flex-col">
+                  <h3 className="text-base lg:text-xl font-extrabold text-navy leading-snug mb-2 group-hover:text-coral transition-colors">{project.title}</h3>
+                  <p className="text-sm leading-relaxed text-text">{project.description}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+      )}
 
       {/* ===== PILLARS / SERVICES ===== */}
       <section className="py-16 lg:py-24 bg-paper">
@@ -172,44 +200,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ===== PROJECTS ===== */}
-      {projects.length > 0 && (
-      <section className="py-16 lg:py-24 bg-warm-gray">
-        <div className="max-w-[1280px] mx-auto px-4 lg:px-8">
-          <div className="flex items-end justify-between mb-10 lg:mb-12">
-            <div>
-              <span className="sg-kicker">— FEATURED PROJECTS · مشاريع</span>
-              <h2 className="text-3xl lg:text-[56px] font-black text-navy leading-[1.15] tracking-tight mt-3">من المشاريع الجارية</h2>
-            </div>
-            <Link href="/projects" className="hidden lg:inline-flex items-center gap-2 text-coral font-bold text-sm hover:underline">جميع المشاريع ({projects.length}) ←</Link>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-7">
-            {projects.map((project, i) => (
-              <Link key={project.id} href={`/projects/${project.slug}`}
-                className={`group bg-white border border-rule flex flex-col hover:-translate-y-0.5 hover:shadow-[0_16px_36px_rgba(27,42,74,0.1)] transition-all ${i === 0 ? "md:row-span-1" : ""}`}>
-                <div className="relative aspect-[16/10] overflow-hidden bg-warm-gray">
-                  {project.featuredImage ? (
-                    <Image src={project.featuredImage} alt={project.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
-                  ) : project.partnerLogos[0] ? (
-                    <div className="w-full h-full flex items-center justify-center bg-warm-gray">
-                      <Image src={project.partnerLogos[0]} alt="" width={140} height={60} className="opacity-40 group-hover:opacity-70 transition-opacity" />
-                    </div>
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-warm-gray">
-                      <span className="text-navy/10 text-4xl font-black">SGO</span>
-                    </div>
-                  )}
-                </div>
-                <div className="p-6 lg:p-7 flex-1 flex flex-col">
-                  <h3 className="text-lg lg:text-[26px] font-extrabold text-navy leading-snug mb-3 group-hover:text-coral transition-colors">{project.title}</h3>
-                  <p className="text-sm leading-relaxed text-text mb-auto">{project.description}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-      )}
+      {/* projects section moved above pillars */}
 
       {/* ===== IMPACT BAND ===== */}
       <section className="bg-coral text-white py-14 lg:py-16">
