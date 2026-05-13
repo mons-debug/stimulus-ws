@@ -33,7 +33,7 @@ export default async function CommentsPage() {
                 <span className={`px-2.5 py-1 rounded-full text-[10px] font-bold ${c.approved ? "bg-green-100 text-green-700" : "bg-yellow-100 text-yellow-700"}`}>
                   {c.approved ? "مقبول" : "معلق"}
                 </span>
-                <p className="text-text-light text-xs">{c.createdAt.toLocaleDateString("ar-EG")}</p>
+                <p className="text-text-light text-xs">{c.createdAt.toLocaleDateString("ar-u-nu-latn")}</p>
               </div>
             </div>
             <p className="text-text-light text-sm leading-relaxed mb-3">{c.content}</p>

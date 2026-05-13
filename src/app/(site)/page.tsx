@@ -75,12 +75,12 @@ export default async function HomePage() {
               {/* Mobile stats */}
               <div className="lg:hidden flex items-center gap-6 mt-8 pt-6 border-t border-rule">
                 {[
-                  { num: String(articleCount) + "+", label: "مقال" },
-                  { num: String(projects.length), label: "مشاريع" },
-                  { num: "3", label: "مناطق" },
+                  { target: articleCount, suffix: "+", label: "مقال" },
+                  { target: projects.length, suffix: "", label: "مشاريع" },
+                  { target: 3, suffix: "", label: "مناطق" },
                 ].map((s) => (
                   <div key={s.label} className="text-center">
-                    <div className="text-2xl font-black text-navy font-inter">{s.num}</div>
+                    <CountUp target={s.target} suffix={s.suffix} className="text-2xl font-black text-navy" />
                     <div className="text-[10px] text-text-light">{s.label}</div>
                   </div>
                 ))}

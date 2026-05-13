@@ -27,7 +27,7 @@ export default async function SubscribersPage() {
               {subscribers.map((s) => (
                 <tr key={s.id} className="border-b border-border/50">
                   <td className="py-4 px-6 font-medium text-navy">{s.email}</td>
-                  <td className="py-4 px-6 text-text-light">{s.createdAt.toLocaleDateString("ar-EG", { year: "numeric", month: "long", day: "numeric" })}</td>
+                  <td className="py-4 px-6 text-text-light">{s.createdAt.toLocaleDateString("ar-u-nu-latn", { year: "numeric", month: "long", day: "numeric" })}</td>
                 </tr>
               ))}
             </tbody>

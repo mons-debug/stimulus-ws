@@ -1,6 +1,22 @@
 import { prisma } from "@/lib/db";
 import { NextResponse } from "next/server";
 
+export async function GET() {
+  const contacts = await prisma.contactSubmission.findMany({ orderBy: { createdAt: "desc" } });
+  return NextResponse.json(contacts);
+}
+
+export async function PUT(req: Request) {
+  try {
+    const { id } = await req.json();
+    if (!id) return NextResponse.json({ error: "ID required" }, { status: 400 });
+    await prisma.contactSubmission.update({ where: { id }, data: { read: true } });
+    return NextResponse.json({ success: true });
+  } catch (err: any) {
+    return NextResponse.json({ error: err.message }, { status: 500 });
+  }
+}
+
 export async function POST(req: Request) {
   try {
     const body = await req.json();

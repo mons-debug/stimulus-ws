@@ -5,6 +5,7 @@ import { prisma } from "@/lib/db";
 import { notFound } from "next/navigation";
 import { GalleryGrid } from "@/components/ui/Lightbox";
 import { ReadMoreContent } from "@/components/ui/ReadMoreContent";
+import { ShareButtons } from "@/components/ui/ShareButtons";
 
 type Props = { params: Promise<{ slug: string }> };
 export const revalidate = 60;
@@ -152,11 +153,7 @@ export default async function ArticlePage({ params }: Props) {
               </div>
               <div className="bg-white border border-rule p-5">
                 <h4 className="font-mono text-[10px] tracking-[0.14em] uppercase text-coral font-bold mb-4">— SHARE · مشاركة</h4>
-                <div className="grid grid-cols-3 gap-2">
-                  <button className="py-2.5 bg-warm-gray font-mono text-[10px] tracking-[0.12em] uppercase text-navy font-bold hover:bg-coral hover:text-white transition-colors">X</button>
-                  <button className="py-2.5 bg-warm-gray font-mono text-[10px] tracking-[0.12em] uppercase text-navy font-bold hover:bg-coral hover:text-white transition-colors">FB</button>
-                  <button className="py-2.5 bg-warm-gray font-mono text-[10px] tracking-[0.12em] uppercase text-navy font-bold hover:bg-coral hover:text-white transition-colors">نسخ</button>
-                </div>
+                <ShareButtons title={article.title} slug={article.slug} />
               </div>
             </aside>
           </div>
